@@ -18,7 +18,9 @@ bindkey '^[[B' history-substring-search-down
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias pacman="sudo pacman"
-alias upgrade="yay"
+alias xbps-install="sudo xbps-install -S"
+alias xbps-remove="sudo xbps-remove"
+alias xbps-upgrade="sudo xbps-install -Suv"
 alias cat="bat --style=auto"
 alias top="ytop"
 alias ls="exa --icons"
