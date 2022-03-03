@@ -1,0 +1,13 @@
+
+/* colors */
+
+* {
+  al:           #00000000;
+  background:   #030315;
+  foreground:   #B9A1C5;
+  border:       #FBC02D;
+  selected:     #FBC02D;
+  off:          #6C77BB40;
+  input:        #364995;
+  textColor:    #dae3df;
+}

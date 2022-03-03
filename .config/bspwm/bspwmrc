@@ -1,0 +1,72 @@
+#! /bin/bash
+
+source ~/.config/colors
+source ~/.config/bspwm/perfil
+
+bspc monitor -d 'home' 'code' 'browser' 'editor' 'filesystem' 'virtual' 'database' 'discord' 'zoom' 'spotify' 
+
+bspc config border_width         	1
+bspc config window_gap          	10
+bspc config split_ratio          	0.52
+bspc config borderless_monocle   	true
+bspc config gapless_monocle      	true
+bspc config focus_follows_pointer 	true
+
+xsetroot -cursor_name left_ptr
+
+# === KILL PROCESS 
+killall sxhkd xfsettingsd powerkit dunst polybar nitrogen kitty picom
+
+# sxhkd
+sxhkd &
+
+powerkit &
+# == Power Manager
+xfsettingsd &
+
+# === Polybar
+$HOME/.config/polybar/launch.sh &
+
+# === Kitty 
+#$HOME/.config/bspwm/kitty &
+
+# === VSCode
+#bspc rule -a Code desktop="$(bspc query -D -d 'code')"
+
+# === Firefox
+#bspc rule -a firefox desktop="$(bspc query -D -d 'browser')"  follow=on
+
+# === Thunar
+# bspc rule -a Thunar desktop="$(bspc query -D -d 'filesystem')"  follow=off
+# pgrep thunar > /dev/null || thunar &
+
+# === Discord
+# bspc rule -a discord desktop="$(bspc query -D -d 'discord')" state=floating focus=false rectangle=1300x800+250+200 follow=off
+# pgrep Discord > /dev/null || discord &
+
+# === Zoom
+# bspc rule -a zoom desktop="$(bspc query -D -d 'zoom')" state=floating rectangle=1300x800+250+200 follow=on
+
+# === ABNT_KEY_BR
+bash -c $HOME/.config/bspwm/key_abnt_2.sh &
+
+# === Nitrogen (Wallpapaer)
+nitrogen --restore &
+
+# # === Spotify
+# bspc rule -a "" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
+# bspc rule -a "Spotify" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
+# bspc rule -a "spotify" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
+
+# ===  Dunst (Notification)
+dunst &
+
+# ===  Picom (Transparency)
+# picom &
+
+# ==== WMName for JavaApps
+# wmname LG3D
+# bspc rule -a Screenkey manage=off
+
+# ==== SSH AGENT
+# eval `ssh-agent -s`

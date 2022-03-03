@@ -1,0 +1,5 @@
+#! /bin/bash
+
+bspc config normal_border_color "$normal_borders"
+bspc config focused_border_color "$focused_borders"
+

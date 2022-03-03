@@ -1,0 +1,107 @@
+configuration {
+	font:							"Hack 10";
+	show-icons:                     true;
+	icon-theme: 					"Win11";
+	display-drun: 					"";
+	drun-display-format:            "{name}";
+	disable-history:                false;
+	sidebar-mode: 					false;
+}
+
+@import "colors.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+	border:							2px;
+	border-color:					@border;
+    border-radius:                  0px;
+	width:							450px;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						6px 7px 4px 7px;
+	background-color: 				@background;
+	text-color:                 	@textColor;
+	font:							"Hack 12";
+}
+
+entry {
+    background-color:               @al;
+    text-color:                     @textColor;
+    placeholder-color:              @foreground;
+    expand:                         true;
+    horizontal-align:               0;
+    placeholder:                    "Search...";
+	padding: 						6px;
+    blink:                          true;
+}
+
+inputbar {
+	children: 						[ prompt, entry ];
+    background-color:               @background;
+    text-color:                 	@textColor;
+    expand:                         false;
+	border:							2px;
+    border-radius:                  0px;
+	border-color:					@input;
+    margin:                         0px;
+    padding:                        0px;
+}
+
+listview {
+    background-color:               @al;
+    padding:                        0px;
+    columns:                        2;
+    lines:                          8;
+    spacing:                        6px;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @al;
+	border:							0px;
+    border-radius:                  0px;
+	border-color:					@border;
+    children:                       [ inputbar, listview ];
+    spacing:                       	6px;
+    padding:                        6px;
+}
+
+element {
+    background-color:               @al;
+    text-color:                     @textColor;
+    orientation:                    horizontal;
+    border-radius:                  0px;
+	padding: 						3px;
+}
+
+element-icon {
+    size:                           24px;
+    background-color:               #FF000000;
+    border:                         0px;
+}
+
+element-text {
+    expand:                         true;
+    horizontal-align:               0;
+    vertical-align:                 0.5;
+    margin:                         0px 2.5px 0px 2.5px;
+    background-color:               #FF000000;
+    text-color:                     #FFFFFF;
+}
+
+element selected {
+    background-color:               #f27a29;
+    text-color:                     @border;
+	border:							1px 1px 1px 1px;
+    border-radius:                  1px;
+    border-color:                  	#f27a29;
+}
