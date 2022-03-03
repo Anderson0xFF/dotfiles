@@ -21,7 +21,7 @@ cp .themes $HOME/
 echo "Install wallpapers.."
 cp wallpapers $HOME/
 echo "Install p10k config.."
-cp p10k.zsh $HOME/
+cp .p10k.zsh $HOME/
 echo "Install zshrc.."
 cp .zshrc $HOME/
 
