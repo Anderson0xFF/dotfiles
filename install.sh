@@ -1,29 +1,32 @@
 #!/bin/bash
 
-if grep -q "Arch Linux"  /etc/os-release
-then
-  echo "Operation System detected: ArchLinux"
-  chmox +x install_arch.sh
-  ./install_arch.sh
-elif grep -q "Void Linux" /etc/os-release
-  echo "Operation System detected: Void Linux"
-else
-  echo "System not supported."
-  return
-fi
-
+install() {
+	if grep -q "Arch Linux"  /etc/os-release
+	then
+  		echo "Operation System detected: ArchLinux"
+  		chmox +x install_arch.sh
+  		./install_arch.sh
+	elif grep -q "void" /etc/os-release
+	then
+  		echo "Operation System detected: Void Linux"
+  		./install_void.sh
+	else
+  		echo "System not supported."
+  		return 1
+	fi
+cd $HOME/dotfiles/
 echo "Install configurations.."
-cp .config $HOME/
+cp -f .config $HOME/
 echo "Install icons.."
-cp .icons $HOME/
+cp -f .icons $HOME/
 echo "Install themes.."
-cp .themes $HOME/
+cp -f .themes $HOME/
 echo "Install wallpapers.."
-cp wallpapers $HOME/
+cp -f wallpapers $HOME/
 echo "Install p10k config.."
-cp .p10k.zsh $HOME/
+cp -f .p10k.zsh $HOME/
 echo "Install zshrc.."
-cp .zshrc $HOME/
+cp -f .zshrc $HOME/
 
 echo "Install Nerd Fonts"
 cd /tmp/
@@ -53,3 +56,7 @@ cargo install exa bat ytop procs
 echo "Install ASDF"
 cd $HOME
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+
+}
+
+install
