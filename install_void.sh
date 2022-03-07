@@ -9,7 +9,7 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	feh nitrogen wget vscode curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
-	upower libXScrnSaver-devel docker
+	upower libXScrnSaver-devel docker vlc
 
 sudo usermod -aG docker $USER
 
@@ -23,8 +23,8 @@ cd consolas-font
 wget https://github.com/pensnarik/consolas-font/raw/master/consolas-fonts-tts.tar.bz2
 tar -xf consolas-fonts-tts.tar.bz2 && rm -rf consolas-fonts-tts.tar.bz2
 cd /tmp/
-sudo mv consolas-font /usr/share/fonts/TTF && fc-cache -s
-
+sudo mv consolas-font /usr/share/fonts/TTF/
+fc-cache -fv
 
 echo "Install Void Packages Repository"
 git clone https://github.com/void-linux/void-packages.git ~/.void-packages
