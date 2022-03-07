@@ -22,18 +22,21 @@ Purple='\033[0;35m'       # Purple
 Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 
+echo -e "${Yellow}"
 cat emot.txt
+echo -e "${Color_Off}" 
+
 
 install() {
     if grep -q "Arch Linux"  /etc/os-release
     then
         echo -e "${Blue}Operation System detected: ArchLinux${Color_Off}"
-        chmox +x install_arch.sh
+        chmod +x install_arch.sh
         ./install_arch.sh
     elif grep -q "void" /etc/os-release
     then
         echo -e "${Green}Operation System detected: Void Linux${Color_Off}"
-		chmox +x install_void.sh
+		chmod +x install_void.sh
         ./install_void.sh
     else
         echo "System not supported."
