@@ -15,7 +15,13 @@ bspc config focus_follows_pointer 	true
 xsetroot -cursor_name left_ptr
 
 # === KILL PROCESS 
-killall sxhkd xfsettingsd powerkit dunst polybar nitrogen kitty picom
+pkill sxhkd 
+pkill xfsettingsd 
+pkill powerkit 
+pkill dunst 
+pkill polybar 
+pkill nitrogen 
+pkill picom
 
 # sxhkd
 sxhkd &
@@ -23,7 +29,7 @@ sxhkd &
 powerkit &
 # == Power Manager
 xfsettingsd &
-
+xfce4-power-manager &
 # === Polybar
 $HOME/.config/polybar/launch.sh &
 

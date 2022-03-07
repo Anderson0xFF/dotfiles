@@ -1,14 +1,16 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-history-substring-search.zsh
-source /opt/asdf-vm/asdf.sh
+source $HOME/.asdf/asdf.sh
+
 #source ~/.config/colors
 
 bindkey '^[[A' history-substring-search-up
@@ -24,12 +26,11 @@ alias xbps-upgrade="sudo xbps-install -Suv"
 alias cat="bat --style=auto"
 alias top="ytop"
 alias ls="exa --icons"
-alias neofetch="neofetch --ascii_distro clear_linux"
-alias distro="neofetch --ascii_distro clear_linux"
 alias vim="~/.local/bin/lvim"
 alias lvim="~/.local/bin/lvim"
 alias pip="~/.local/bin/pip"
 alias django="~/.local/bin/pip django"
 
-export PATH="$PATH:$(yarn global bin)"
 
+export GITHUB_ACCESS_TOKEN="add github access token (notification)"
+#export PATH="$PATH:$(yarn global bin)"
