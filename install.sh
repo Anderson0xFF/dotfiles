@@ -62,6 +62,7 @@ install() {
     
     echo "Install Oh My ZSH .."
     cd $HOME
+    zsh
     sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
     #https://github.com/ChesterYue/ohmyzsh-theme-passion
     
