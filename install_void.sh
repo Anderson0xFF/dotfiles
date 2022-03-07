@@ -9,8 +9,7 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	feh nitrogen wget vscode curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
-	upower libXScrnSaver-devel \
-	pkill docker
+	upower libXScrnSaver-devel docker
 
 sudo usermod -aG docker $USER
 
