@@ -22,7 +22,7 @@ Purple='\033[0;35m'       # Purple
 Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
 
-echo "Install desktop ..."
+cat emot.txt
 
 install() {
     if grep -q "Arch Linux"  /etc/os-release
@@ -32,13 +32,14 @@ install() {
         ./install_arch.sh
     elif grep -q "void" /etc/os-release
     then
-        echo "Operation System detected: Void Linux"
+        echo -e "${Green}Operation System detected: Void Linux${Color_Off}"
 		chmox +x install_void.sh
         ./install_void.sh
     else
         echo "System not supported."
         return 1
     fi
+
     cd $HOME/dotfiles/
     echo "Install configurations.."
     cp -r .config $HOME/
@@ -48,23 +49,25 @@ install() {
     cp -r .themes $HOME/
     echo "Install wallpapers.."
     cp -r wallpapers $HOME/
-    echo "Install p10k config.."
-    cp .p10k.zsh $HOME/
-    echo "Install zshrc.."
-    cp .zshrc $HOME/
-    
+
     echo "Install Nerd Fonts .."
-    cd /tmp/
+    cd $HOME
     git clone https://github.com/ryanoasis/nerd-fonts
     cd nerd-fonts
     chmod +x ./install.sh
     ./install.sh
-    fc-cache -f -v
+    fc-cache -fv
     
-    echo "Install PowerLevel10K .."
+    echo "Install Oh My ZSH .."
     cd $HOME
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    #https://github.com/ChesterYue/ohmyzsh-theme-passion
     
+    echo "Install zshrc.."
+    cd $HOME/dotfiles/
+    cat $HOME/dotfiles/.zshrc >> cd $HOME/.zshrc
+
+    cd $HOME
     echo "Install Rust Lang .."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
@@ -75,7 +78,9 @@ install() {
     echo "Install ASDF .."
     cd $HOME
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
-    
 }
 
 install
+
+
+#https://docs.docker.com/engine/install/linux-postinstall/

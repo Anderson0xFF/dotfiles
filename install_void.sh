@@ -8,16 +8,27 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	feh nitrogen wget vscode curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
-	upower libXScrnSaver-devel qt5-devel
+	upower libXScrnSaver-devel xfce4-power-manager xfce4-settings-manager \
+	pkill docker
+
+sudo usermod -aG docker $USER
+
 
 echo "Directory update"
 xdg-user-dirs-update
 
-echo "Install powerkit"
-cd $HOME
-git clone https://github.com/rodlie/powerkit
-cd powerkit
-mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
-make
-sudo make install
+echo "Install Consolas Fonts"
+cd /tmp/ && mkdir consolas-font
+cd consolas-font
+wget https://github.com/pensnarik/consolas-font/raw/master/consolas-fonts-tts.tar.bz2
+tar -xf consolas-fonts-tts.tar.bz2
+rm -rf consolas-fonts-tts.tar.bz2
+cd /tmp/
+sudo mv consolas-font /usr/share/fonts/TTF && fc-cache -s
+
+
+echo "Install Void Packages Repository"
+git clone https://github.com/void-linux/void-packages.git ~/.void-packages
+cd .void-packages
+./xbps-src binary-bootstrap
+echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf

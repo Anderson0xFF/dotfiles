@@ -3,7 +3,7 @@ font:
     #family: "MesloLGS NF"
     family: "Iosevka"
     antialias: "false"
-    size: 12
+    size: 20
 
 colors:
   # Default colors

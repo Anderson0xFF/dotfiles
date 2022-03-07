@@ -5,8 +5,8 @@
   al:           #00000000;
   background:   #030315;
   foreground:   #B9A1C5;
-  border:       #FBC02D;
-  selected:     #FBC02D;
+  border:       #50fa7b;
+  selected:     #50fa7b;
   off:          #6C77BB40;
   input:        #364995;
   textColor:    #dae3df;

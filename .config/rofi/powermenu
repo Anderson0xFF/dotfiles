@@ -5,18 +5,23 @@ rofi_command="rofi -theme styles/powermenu.rasi"
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
-shutdown=""
+shutdown="襤"
 reboot="勒"
-lock=""
+lock=""
 suspend="⏾"
 logout=""
 sleep="鈴"
 
 # Variable passed to rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout\n$sleep"
+options="$shutdown
+$reboot
+$lock
+$suspend
+$logout
+$sleep"
 _msg="Options  -  yes / y / no / n"
 
-chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
+chosen="$(echo "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
 case $chosen in $shutdown)
 		ans=$($HOME/.config/rofi/confirm)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
@@ -30,7 +35,13 @@ case $chosen in $shutdown)
     $reboot)
 		ans=$($HOME/.config/rofi/confirm)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-        systemctl reboot
+			if grep -q "Arch Linux" /etc/os-release
+        			then
+				systemctl reboot
+			elif grep -q "void" /etc/os-release
+			then
+				reboot
+			fi
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
         else
@@ -63,11 +74,17 @@ case $chosen in $shutdown)
     $sleep)
 		ans=$($HOME/.config/rofi/confirm)
 		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-        systemctl suspend
+        if grep -q "Arch Linux" /etc/os-release
+        			then
+				systemctl suspend
+			elif grep -q "void" /etc/os-release
+			then
+				zzz
+			fi
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
         else
-        rofi -theme ~/.config/rofi/styles/askpass.rasi -e "$_msg"
+        #rofi -theme ~/.config/rofi/styles/askpass.rasi -e "$_msg"
         fi
         ;;
 esac
