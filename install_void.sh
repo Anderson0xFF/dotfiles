@@ -25,6 +25,7 @@ tar -xf consolas-fonts-tts.tar.bz2 && rm -rf consolas-fonts-tts.tar.bz2
 cd /tmp/
 sudo mv consolas-font /usr/share/fonts/TTF/
 fc-cache -fv
+sudo fc-cache -s
 
 echo "Install Void Packages Repository"
 git clone https://github.com/void-linux/void-packages.git ~/.void-packages
