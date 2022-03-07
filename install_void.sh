@@ -12,7 +12,6 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	upower libXScrnSaver-devel \
 	pkill docker
 
-
 sudo usermod -aG docker $USER
 
 

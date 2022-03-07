@@ -26,7 +26,6 @@ echo -e "${Yellow}"
 cat emot.txt
 echo -e "${Color_Off}" 
 
-
 install() {
     if grep -q "Arch Linux"  /etc/os-release
     then
