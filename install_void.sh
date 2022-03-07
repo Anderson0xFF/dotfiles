@@ -29,6 +29,6 @@ sudo fc-cache -s
 
 echo "Install Void Packages Repository"
 git clone https://github.com/void-linux/void-packages.git ~/.void-packages
-cd .void-packages
+cd ~/.void-packages
 ./xbps-src binary-bootstrap
 echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
