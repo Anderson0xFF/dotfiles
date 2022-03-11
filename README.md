@@ -7,6 +7,9 @@ My dotfiles
 ![Anderson Almeida - dotfiles](./desk2.png "Anderson Almeida - dotfiles")
 
 ![Anderson Almeida - dotfiles](./desk3.png "Anderson Almeida - dotfiles")
+
+![Anderson Almeida - dotfiles](./desk4.png "Anderson Almeida - dotfiles")
+
 # Dependencies
 Dependencies will be automatically installed on supported systems. The installation file assumes that you have just installed the operating system and have not installed any extra packages.
 

@@ -2,10 +2,10 @@ configuration {
 	font:							"Hack 10";
 	show-icons:                     true;
 	icon-theme: 					"Win11";
-	display-drun: 					"";
+	display-drun: 					"";
 	drun-display-format:            "{name}";
-	disable-history:                false;
-	sidebar-mode: 					false;
+	disable-history:                true;
+	sidebar-mode: 					true;
 }
 
 @import "colors.rasi"
@@ -84,7 +84,7 @@ element {
 }
 
 element-icon {
-    size:                           24px;
+    size:                           30px;
     background-color:               #FF000000;
     border:                         0px;
 }

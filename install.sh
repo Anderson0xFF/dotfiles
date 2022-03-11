@@ -43,47 +43,73 @@ install() {
     fi
 
     cd $HOME/dotfiles/
-    echo "Install configurations.."
+    echo -e "${Green}Install configurations..${Color_Off}"
     cp -r .config $HOME/
-    echo "Install icons.."
+
+
+    echo -e "${Green}Install icons..${Color_Off}"
     cp -r .icons $HOME/
-    echo "Install themes.."
+
+    echo -e "${Green}Install themes..${Color_Off}"
     cp -r .themes $HOME/
-    echo "Install wallpapers.."
+
+    echo -e "${Green}Install wallpapers..${Color_Off}"
     cp -r wallpapers $HOME/
 
-    echo "Install Nerd Fonts .."
+    echo -e "${Green}Install Nerd Fonts..${Color_Off}"
     cd $HOME
     git clone https://github.com/ryanoasis/nerd-fonts
     cd nerd-fonts
     chmod +x ./install.sh
     ./install.sh
     fc-cache -fv
+    cd ..
+    rm -rf nerd-fonts
     
-    echo "Install Oh My ZSH .."
+    echo -e "${Green}Install Oh My ZSH..${Color_Off}"
     cd $HOME
-    zsh
     sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-    #https://github.com/ChesterYue/ohmyzsh-theme-passion
-    
-    echo "Install zshrc.."
-    cd $HOME/dotfiles/
-    cat $HOME/dotfiles/.zshrc >> cd $HOME/.zshrc
+    cd ~/.oh-my-zsh/themes
+    wget https://raw.githubusercontent.com/ChesterYue/ohmyzsh-theme-passion/master/passion.zsh-theme
 
+
+    echo -e "${Green}Install zshrc..${Color_Off}"
+    cd $HOME/dotfiles/
+    cat $HOME/dotfiles/.zshrc >> $HOME/.zshrc
+    
+
+    echo -e "${Green}Install Rust..${Color_Off}"
     cd $HOME
-    echo "Install Rust Lang .."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
 
-    echo "Install system tools .."
+    echo -e "${Green}Install system tools..${Color_Off}"
     cargo install exa bat ytop procs
     
-    echo "Install ASDF .."
+    echo -e "${Green}Install ASDF Manage multiple runtime versions with a single CLI tool, extendable via plugins.${Color_Off}"
     cd $HOME
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+
+    echo -e "${Green}Install NodeJS..${Color_Off}"
+    cd $HOME
+    asdf plugin add nodejs
+    asdf install nodejs 17.6.0
+    asdf global nodejs 17.6.0
+
+    echo -e "${Green}Install Yarn..${Color_Off}"
+    echo "Install Yarn"
+    cd $HOME
+    npm install --global yarn
+    yarn
+
+    echo -e "${Green}Install LunarVim..${Color_Off}"
+    cd $HOME
+    bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+    echo -e "${Green}Disable antialias Consolas font..${Color_Off}"
+    sudo cp $HOME/dotfiles/10-antialias.conf /etc/fonts/conf.d/
+
+
 }
 
 install
-
-
-#https://docs.docker.com/engine/install/linux-postinstall/

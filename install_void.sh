@@ -9,10 +9,10 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	feh nitrogen wget vscode curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
-	upower libXScrnSaver-devel docker vlc
+	upower libXScrnSaver-devel docker vlc thunar-volman gvfs
 
 sudo usermod -aG docker $USER
-
+sudo ln -s /etc/sv/docker /var/service/
 
 echo "Directory update"
 xdg-user-dirs-update
