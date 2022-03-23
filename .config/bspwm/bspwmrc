@@ -1,8 +1,17 @@
 #! /bin/bash
-
 source ~/.config/colors
 
-bspc monitor -d 'home' 'code' 'browser' 'editor' 'filesystem' 'virtual' 'database' 'discord' 'zoom' 'spotify' 
+execute_exists() {
+    # check if command exists and fail otherwise
+    command -v "$1" >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        return 0;
+    else
+        $1 &
+    fi
+}
+
+bspc monitor -d '1' '2' '3' '4' '5'
 
 bspc config border_width         	1
 bspc config window_gap          	10
@@ -17,42 +26,31 @@ bspc config focused_border_color "$focused_borders"
 xsetroot -cursor_name left_ptr
 
 # === KILL PROCESS 
+ 
 pkill sxhkd 
 pkill xfsettingsd 
 pkill dunst 
 pkill polybar 
 pkill nitrogen 
 pkill picom
+pkill nitrogen
+pkill gnome-keyring-daemon
+pkill powerkit
+pkill xfce4-power-manager
 
-# sxhkd
-sxhkd &
+execute_exists sxhkd
+execute_exists xfsettingsd
+execute_exists xfce4-power-manager
+execute_exists powerkit
+execute_exists $HOME/.config/polybar/launch.sh
+execute_exists dunst
+#execute_exists picom
 
-powerkit &
-# == Power Manager
-xfsettingsd &
-xfce4-power-manager &
-# === Polybar
-$HOME/.config/polybar/launch.sh &
+# === Clean Thumbnails
+rm -rf ~/.cache/thumbnails/normal/*
 
-# === Kitty 
-#$HOME/.config/bspwm/kitty &
-
-# === VSCode
-#bspc rule -a Code desktop="$(bspc query -D -d 'code')"
-
-# === Firefox
-#bspc rule -a firefox desktop="$(bspc query -D -d 'browser')"  follow=on
-
-# === Thunar
-# bspc rule -a Thunar desktop="$(bspc query -D -d 'filesystem')"  follow=off
-# pgrep thunar > /dev/null || thunar &
-
-# === Discord
-# bspc rule -a discord desktop="$(bspc query -D -d 'discord')" state=floating focus=false rectangle=1300x800+250+200 follow=off
-# pgrep Discord > /dev/null || discord &
-
-# === Zoom
-# bspc rule -a zoom desktop="$(bspc query -D -d 'zoom')" state=floating rectangle=1300x800+250+200 follow=on
+# == Keyring 
+gnome-keyring-daemon -f &
 
 # === ABNT_KEY_BR
 bash -c $HOME/.config/bspwm/key_abnt_2.sh &
@@ -60,20 +58,7 @@ bash -c $HOME/.config/bspwm/key_abnt_2.sh &
 # === Nitrogen (Wallpapaer)
 nitrogen --restore &
 
-# # === Spotify
-# bspc rule -a "" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
-# bspc rule -a "Spotify" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
-# bspc rule -a "spotify" desktop='^10' state=floating rectangle=1300x800+250+200 follow=on
-
-# ===  Dunst (Notification)
-dunst &
-
-# ===  Picom (Transparency)
-# picom &
 
 # ==== WMName for JavaApps
 # wmname LG3D
 # bspc rule -a Screenkey manage=off
-
-# ==== SSH AGENT
-# eval `ssh-agent -s`

@@ -23,5 +23,5 @@ indigo=#6C77BB
 gray=#9E9E9E
 
 
-normal_borders=${blue}
-focused_borders=${green}
+normal_borders=${purple}
+focused_borders=${pink}

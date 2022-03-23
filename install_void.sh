@@ -6,7 +6,7 @@ sudo xbps-install -Suv
 
 sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	llvm rofi ranger neovim Thunar python \
-	feh nitrogen wget vscode curl xorg xinit firefox \
+	feh nitrogen wget curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
 	upower libXScrnSaver-devel docker vlc thunar-volman gvfs
@@ -32,3 +32,12 @@ git clone https://github.com/void-linux/void-packages.git ~/.void-packages
 cd ~/.void-packages
 ./xbps-src binary-bootstrap
 echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
+echo XBPS_MAKEJOBS=4 >> etc/conf
+
+echo "Install Microsoft Visual Studio Code"
+cd $HOME
+curl -L -o vscode.tar.gz https://code.visualstudio.com/sha/download\?build\=stable\&os\=linux-x64
+tar -xf vscode.tar.gz
+sudo mv VSCode-linux-x64 /opt/vscode
+
+sudo cp $HOME/dotfiles/vscode.desktop /usr/share/application/
