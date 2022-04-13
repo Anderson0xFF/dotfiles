@@ -1,7 +1,7 @@
 font:
   size: 11.0
   normal:
-    family: Iosevka
+    family: "Iosevka"
     style: Regular
 
 colors:

@@ -9,7 +9,7 @@ sudo xbps-install -S bspwm sxhkd zsh cmake gcc \
 	feh nitrogen wget curl xorg xinit firefox \
 	neofetch ninja dunst alacritty scrot picom polybar \
 	betterlockscreen xdg-user-dirs base-devel libXrandr-devel \
-	upower libXScrnSaver-devel docker vlc thunar-volman gvfs
+	upower libXScrnSaver-devel docker vlc thunar-volman gvfs openssl-devel
 
 sudo usermod -aG docker $USER
 sudo ln -s /etc/sv/docker /var/service/
