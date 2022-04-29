@@ -17,6 +17,11 @@ sudo ln -s /etc/sv/docker /var/service/
 echo "Directory update"
 xdg-user-dirs-update
 
+echo "Install Cascadia Code Fonts"
+cd $HOME/dotfiles
+unzip  CascadiaCode.zip
+sudo mv CascadiaCode /usr/share/fonts/TTF/
+
 echo "Install Consolas Fonts"
 cd /tmp/ && mkdir consolas-font
 cd consolas-font
