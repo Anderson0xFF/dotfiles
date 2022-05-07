@@ -8,3 +8,9 @@ sudo apt remove gnome-software-plugin-snap
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub org.mozilla.firefox
 
+
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+
+
+cd /usr/share/icons/Yaru/scalable/actions/ && sudo cp view-app-grid-symbolic.svg view-app-grid-symbolic.svg.bak
+sudo cp ~/dotfiles/ubuntu-icon.svg /usr/share/icons/Yaru/scalable/actions/view-app-grid-symbolic.svg
