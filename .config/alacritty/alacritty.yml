@@ -1,13 +1,13 @@
 font:
-  size: 11.0
+  size: 12.0
   normal:
-    family: "Iosevka"
+    family: "Cascadia Mono"
     style: Regular
 
 colors:
   # Default colors
   primary:
-    background: '0x1e1c31'
+    background: '0x1C2029'
     foreground: '0xcbe1e7'
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:

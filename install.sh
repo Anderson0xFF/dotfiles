@@ -29,14 +29,25 @@ echo -e "${Color_Off}"
 install() {
     if grep -q "Arch Linux"  /etc/os-release
     then
-        echo -e "${Blue}Operation System detected: ArchLinux${Color_Off}"
+    
+        echo -e "${Blue}Operation System detected: Arch Linux${Color_Off}"
         chmod +x install_arch.sh
         ./install_arch.sh
+        
     elif grep -q "void" /etc/os-release
     then
+    
         echo -e "${Green}Operation System detected: Void Linux${Color_Off}"
-		chmod +x install_void.sh
+	chmod +x install_void.sh
         ./install_void.sh
+        
+    elif grep -q "Ubuntu"  /etc/os-release
+    then
+    
+    	echo -e "${Purple}Operation System detected: Ubuntu${Color_Off}"
+    	chmod +x install_ubuntu.sh
+    	./install_ubuntu.sh
+    	
     else
         echo "System not supported."
         return 1
@@ -45,13 +56,6 @@ install() {
     cd $HOME/dotfiles/
     echo -e "${Green}Install configurations..${Color_Off}"
     cp -r .config $HOME/
-
-
-    echo -e "${Green}Install icons..${Color_Off}"
-    cp -r .icons $HOME/
-
-    echo -e "${Green}Install themes..${Color_Off}"
-    cp -r .themes $HOME/
 
     echo -e "${Green}Install wallpapers..${Color_Off}"
     cp -r wallpapers $HOME/
@@ -65,12 +69,6 @@ install() {
     fc-cache -fv
     cd ..
     rm -rf nerd-fonts
-    
-    echo -e "${Green}Install Oh My ZSH..${Color_Off}"
-    cd $HOME
-    sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-    cd ~/.oh-my-zsh/themes
-    wget https://raw.githubusercontent.com/ChesterYue/ohmyzsh-theme-passion/master/passion.zsh-theme
 
 
     echo -e "${Green}Install zshrc..${Color_Off}"
@@ -93,9 +91,21 @@ install() {
     echo -e "${Green}Install NodeJS..${Color_Off}"
     cd $HOME
     asdf plugin add nodejs
-    asdf install nodejs 17.6.0
-    asdf global nodejs 17.6.0
-
+    asdf install nodejs 18.3.0
+    asdf global nodejs 18.3.0
+    
+    echo -e "${Green}Install Python..${Color_Off}"
+    cd $HOME
+    asdf plugin add python
+    asdf install python 3.10.5
+    asdf global python 3.10.5
+    
+    echo -e "${Green}Install .NET..${Color_Off}"
+    asdf plugin add dotnet-core
+    asdf install dotnet-core 6.0.300
+    asdf global dotnet-core 6.0.300
+    
+    
     echo -e "${Green}Install Yarn..${Color_Off}"
     echo "Install Yarn"
     cd $HOME
@@ -109,7 +119,15 @@ install() {
     echo -e "${Green}Disable antialias Consolas font..${Color_Off}"
     sudo cp $HOME/dotfiles/10-antialias.conf /etc/fonts/conf.d/
 
+    echo "Install Alacritty Terminal"
+    cargo install alacritty
+    wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg
+    sudo mv alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    sudo desktop-file-install Alacritty.desktop
+    sudo update-desktop-database
 
+    echo "Changer Shell"
+    chsh -s /bin/zsh
 }
 
 install
