@@ -1,23 +1,50 @@
-sudo apt install git preload build-essential libglew-dev libglfw3-dev cmake clang \
-llvm libboost-system-dev libboost-filesystem-dev libboost-iostreams-dev \
-libcrypto++-dev libboost-date-time-dev zsh curl kcachegrind
+echo "Install essential"
+sudo apt install git preload zsh curl
 
-echo "Remove Firefox-snap"
+echo "Install my dev-base"
+sudo apt install build-essential libglew-dev libglfw3-dev cmake clang \
+llvm libboost-system-dev libboost-filesystem-dev libboost-iostreams-dev \
+libcrypto++-dev libboost-date-time-dev kcachegrind
+
+echo "Remove Firefox-snap and snap-store"
 sudo snap remove firefox snap-store
-sudo apt install gnome-software gnome-software-plugin-flatpak
 sudo apt remove gnome-software-plugin-snap
+
+echo "Install Gnome Software"
+sudo apt install gnome-software gnome-software-plugin-flatpak
+
+echo "Install Mozilla"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub org.mozilla.firefox
+
+echo "Install BlackBox Terminal"
+flatpak install flathub com.raggesilver.BlackBox
+cp $HOME/dotfiles/blackbox-themes/* $HOME/.var/app/com.raggesilver.BlackBox/data/blackbox/schemes
 
 echo "Customize Gnome Desktop"
 sudo apt-get purge info
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-#gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 16
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 22
 gsettings set org.gnome.mutter center-new-windows true
 
-cd /usr/share/icons/Yaru/scalable/actions/ && sudo cp view-app-grid-symbolic.svg view-app-grid-symbolic.svg.bak
-sudo cp ~/dotfiles/ubuntu-icon.svg /usr/share/icons/Yaru/scalable/actions/view-app-grid-symbolic.svg
+echo "Install Kora icons"
+cd $HOME
+mkdir .icons
+git clone https://github.com/bikass/kora.git
+cd kora
+mv kora-light-panel .icons/
+mv kora-light .icons/
+mv kora-pgrey .icons/
+mv kora .icons/
+cd $HOME
+
+gsettings set org.gnome.desktop.interface icon-theme 'kora'
+
+
+
+#cd /usr/share/icons/Yaru/scalable/actions/ && sudo cp view-app-grid-symbolic.svg view-app-grid-symbolic.svg.bak
+#sudo cp ~/dotfiles/ubuntu-icon.svg /usr/share/icons/Yaru/scalable/actions/view-app-grid-symbolic.svg
 
 echo "Install Docker"
 
@@ -38,6 +65,3 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 echo "Docker installed"
-
-
-
