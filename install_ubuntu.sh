@@ -25,7 +25,7 @@ echo "Customize Gnome Desktop"
 sudo apt-get purge info
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 22
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 16
 gsettings set org.gnome.mutter center-new-windows true
 
 echo "Install Kora icons"
