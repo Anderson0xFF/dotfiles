@@ -1,5 +1,6 @@
 echo "Install essential"
-sudo apt install git preload zsh curl
+sudo apt install git preload zsh curl gnome-shell-extensions \
+gnome-shell-extension-manager chrome-gnome-shell 
 
 echo "Install my dev-base"
 sudo apt install build-essential libglew-dev libglfw3-dev cmake clang \
@@ -12,6 +13,11 @@ sudo apt remove gnome-software-plugin-snap
 
 echo "Install Gnome Software"
 sudo apt install gnome-software gnome-software-plugin-flatpak
+
+
+echo "Install Extensions"
+cp ~/dotfiles/extensions ~/.local/share/gnome-shell/extensions/
+
 
 echo "Install Mozilla"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -26,6 +32,7 @@ sudo apt-get purge info
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 16
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.mutter center-new-windows true
 
 echo "Install Kora icons"
@@ -39,7 +46,7 @@ mv kora-pgrey .icons/
 mv kora .icons/
 cd $HOME
 
-gsettings set org.gnome.desktop.interface icon-theme 'kora'
+#gsettings set org.gnome.desktop.interface icon-theme 'kora'
 
 
 

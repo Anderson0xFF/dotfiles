@@ -70,11 +70,16 @@ install() {
     cd ..
     rm -rf nerd-fonts
 
-
-    echo -e "${Green}Install zshrc..${Color_Off}"
-    cd $HOME/dotfiles/
-    cat $HOME/dotfiles/.zshrc >> $HOME/.zshrc
-    
+    if grep -q "Ubuntu"  /etc/os-release
+    then
+        echo -e "${Green}Install zshrc..${Color_Off}"
+        cd $HOME/dotfiles/
+        cat $HOME/dotfiles/.zshrc _ubuntu >> $HOME/.zshrc
+    else 
+        echo -e "${Green}Install zshrc..${Color_Off}"
+        cd $HOME/dotfiles/
+        cat $HOME/dotfiles/.zshrc >> $HOME/.zshrc
+    fi
 
     echo -e "${Green}Install Rust..${Color_Off}"
     cd $HOME
@@ -91,19 +96,13 @@ install() {
     echo -e "${Green}Install NodeJS..${Color_Off}"
     cd $HOME
     asdf plugin add nodejs
-    asdf install nodejs 18.3.0
-    asdf global nodejs 18.3.0
-    
-    echo -e "${Green}Install Python..${Color_Off}"
-    cd $HOME
-    asdf plugin add python
-    asdf install python 3.10.5
-    asdf global python 3.10.5
+    asdf install nodejs latest
+    asdf global nodejs latest
     
     echo -e "${Green}Install .NET..${Color_Off}"
     asdf plugin add dotnet-core
-    asdf install dotnet-core 6.0.300
-    asdf global dotnet-core 6.0.300
+    asdf install latest
+    asdf global latest
     
     
     echo -e "${Green}Install Yarn..${Color_Off}"
@@ -116,15 +115,13 @@ install() {
     cd $HOME
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
-    echo -e "${Green}Disable antialias Consolas font..${Color_Off}"
-    sudo cp $HOME/dotfiles/10-antialias.conf /etc/fonts/conf.d/
 
-    echo "Install Alacritty Terminal"
-    cargo install alacritty
-    wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg
-    sudo mv alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-    sudo desktop-file-install Alacritty.desktop
-    sudo update-desktop-database
+    # echo "Install Alacritty Terminal"
+    # cargo install alacritty
+    # wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg
+    # sudo mv alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+    # sudo desktop-file-install Alacritty.desktop
+    # sudo update-desktop-database
 
     echo "Changer Shell"
     chsh -s /bin/zsh

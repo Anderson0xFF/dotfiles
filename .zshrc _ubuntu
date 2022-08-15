@@ -5,11 +5,14 @@ SAVEHIST=4000
 # End of lines configured by zsh-newuser-install
 
 # ZSH Themes
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/jblab_2021.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/marcduiker.omp.json)"
 
 alias apt="sudo apt"
 alias upgrade="apt update && apt upgrade"
 alias cat="bat --style=auto"
 alias ls="exa --icons"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-. ~/.asdf/asdf.sh
+. $HOME/.asdf/asdf.sh
+alias nvim="/home/anderson/.local/bin/lvim"
+
+export HELIX_ENGINE_PATH="/home/anderson/workspace/ganymede/data/"
