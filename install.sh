@@ -89,9 +89,9 @@ install() {
     echo -e "${Green}Install system tools..${Color_Off}"
     cargo install exa bat ytop procs
     
-    echo -e "${Green}Install ASDF Manage multiple runtime versions with a single CLI tool, extendable via plugins.${Color_Off}"
+    echo -e "${Green}Install ASDF Manage.${Color_Off}"
     cd $HOME
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 
     echo -e "${Green}Install NodeJS..${Color_Off}"
     cd $HOME
@@ -101,8 +101,8 @@ install() {
     
     echo -e "${Green}Install .NET..${Color_Off}"
     asdf plugin add dotnet-core
-    asdf install latest
-    asdf global latest
+    asdf install dotnet-core latest
+    asdf global dotnet-core latest
     
     
     echo -e "${Green}Install Yarn..${Color_Off}"

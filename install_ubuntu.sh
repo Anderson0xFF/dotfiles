@@ -7,21 +7,17 @@ sudo apt install build-essential libglew-dev libglfw3-dev cmake clang \
 llvm libboost-system-dev libboost-filesystem-dev libboost-iostreams-dev \
 libcrypto++-dev libboost-date-time-dev kcachegrind
 
-echo "Remove Firefox-snap and snap-store"
+echo "Remove Firefox Snap and Snap Store"
 sudo snap remove firefox snap-store
 sudo apt remove gnome-software-plugin-snap
 
-echo "Install Gnome Software"
+echo "Install Gnome Software and Flatpak support"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 sudo apt install gnome-software gnome-software-plugin-flatpak
 
 
-echo "Install Extensions"
-cp ~/dotfiles/extensions ~/.local/share/gnome-shell/extensions/
-
-
-echo "Install Mozilla"
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub org.mozilla.firefox
+#echo "Install Extensions"
+#cp ~/dotfiles/extensions ~/.local/share/gnome-shell/extensions/
 
 echo "Install BlackBox Terminal"
 flatpak install flathub com.raggesilver.BlackBox
