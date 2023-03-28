@@ -1,7 +1,0 @@
-[Desktop Entry]
- Version=1.0
- Name=Visual Studio Code
- Exec=/opt/vscode/code
- Icon=/opt/vscode/resources/app/resources/linux/code.png
- Type=Application
- Categories=Application

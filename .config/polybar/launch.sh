@@ -1,12 +1,4 @@
-#!/usr/bin/env bash
-
-# Add this script to your wm startup file.
-
-# Terminate already running bar instances
-killall -q polybar
-
-# Wait until the processes have been shut down
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+#! /bin/bash
 
 # Launch the bar
-polybar -q main -c ~/.config/polybar/basic-floating-radius/config.ini &
+polybar -q main -c ~/.config/polybar/$polybar_theme/config.ini &

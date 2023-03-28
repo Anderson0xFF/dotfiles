@@ -1,27 +1,25 @@
 #! /bin/bash
 
-background=#212B30
-foreground=#C4C7C5
-sep=#3F5360
-white=#FFFFFF
-black=#000000
-red=#EC7875
-pink=#EC407A
-purple=#BA68C8
-blue=#42A5F5
-cyan=#4DD0E1
-teal=#00B19F
-green=#50fa7b
-green_dark=#07A37C
-green_light=#A0C96D
-lime=#B9C244
-yellow=#FDD835
-amber=#FBC02D
-orange=#E57C46
-brown=#AC8476
-indigo=#6C77BB
-gray=#9E9E9E
-
-
-normal_borders=${purple}
-focused_borders=${pink}
+export background=#030315
+export foreground=#C4C7C5
+export sep=#3F5360
+export white=#FFFFFF
+export black=#000000
+export red=#EC7875
+export pink=#EC407A
+export purple=#BA68C8
+export blue=#42A5F5
+export cyan=#4DD0E1
+export teal=#00B19F
+export green=#50fa7b
+export green_dark=#07A37C
+export green_light=#A0C96D
+export lime=#B9C244
+export yellow=#FDD835
+export amber=#FBC02D
+export orange=#E57C46
+export brown=#AC8476
+export indigo=#6C77BB
+export gray=#9E9E9E
+export blue_gray=#6D8895
+export blue_dark=#4257f5

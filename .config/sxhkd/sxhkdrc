@@ -7,11 +7,14 @@ super + Return
 	alacritty
 
 # program launcher
-super + d
-	sh $HOME/.config/rofi/launcher.sh
+#super + d
+#	sh $HOME/.config/rofi/launcher.sh
 
-super + n
-	sh ~/.config/rofi/network.sh
+#super + n
+#	sh ~/.config/rofi/network.sh
+
+super + {d,r,p}
+	sh $HOME/.config/rofi/bin/{launcher,runner,powermenu}
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -31,22 +34,23 @@ XF86KbdBrightnessUp
 XF86KbdBrightnessDown
 	keyboard-backlight --down
 
+Print
+	sh $HOME/.config/rofi/bin/screenshot
 
 # Volume Up
 XF86AudioRaiseVolume
-	amixer set Master 5%+
+#	amixer set Master 5%+
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 # Volume Down
 XF86AudioLowerVolume
-	amixer set Master 5%-
+#	amixer set Master 5%-
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Volume Mute
 XF86AudioMute
-	amixer set Master toggle
-
-#Screenshot
-super + {x,p}
-	sh ~/.config/rofi/{powermenu,screenshot}.sh
+#	amixer set Master toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #
 # ====================== bspwm hotkeys ======================

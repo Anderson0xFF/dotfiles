@@ -31,22 +31,22 @@ install() {
     then
     
         echo -e "${Blue}Operation System detected: Arch Linux${Color_Off}"
-        chmod +x install_arch.sh
-        ./install_arch.sh
+        chmod +x archlinux/install.sh
+        ./archlinux/install.sh
         
     elif grep -q "void" /etc/os-release
     then
     
         echo -e "${Green}Operation System detected: Void Linux${Color_Off}"
-	chmod +x install_void.sh
-        ./install_void.sh
+	chmod +x void/install.sh
+        ./void/install.sh
         
     elif grep -q "Ubuntu"  /etc/os-release
     then
     
     	echo -e "${Purple}Operation System detected: Ubuntu${Color_Off}"
-    	chmod +x install_ubuntu.sh
-    	./install_ubuntu.sh
+    	chmod +x ubuntu/install.sh
+    	./ubuntu/install.sh
     	
     else
         echo "System not supported."
@@ -60,6 +60,7 @@ install() {
     echo -e "${Green}Install wallpapers..${Color_Off}"
     cp -r wallpapers $HOME/
 
+
     echo -e "${Green}Install Nerd Fonts..${Color_Off}"
     cd $HOME
     git clone https://github.com/ryanoasis/nerd-fonts
@@ -70,28 +71,27 @@ install() {
     cd ..
     rm -rf nerd-fonts
 
-    if grep -q "Ubuntu"  /etc/os-release
-    then
-        echo -e "${Green}Install zshrc..${Color_Off}"
-        cd $HOME/dotfiles/
-        cat $HOME/dotfiles/.zshrc _ubuntu >> $HOME/.zshrc
-    else 
-        echo -e "${Green}Install zshrc..${Color_Off}"
-        cd $HOME/dotfiles/
-        cat $HOME/dotfiles/.zshrc >> $HOME/.zshrc
-    fi
 
+    # -- Install Rust
     echo -e "${Green}Install Rust..${Color_Off}"
     cd $HOME
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
 
-    echo -e "${Green}Install system tools..${Color_Off}"
+
+    # -- Install System Tools
+
+    echo -e "${Green}Install System Tools..${Color_Off}"
     cargo install exa bat ytop procs
     
+
+    # -- Install ASDF Manager
+
     echo -e "${Green}Install ASDF Manage.${Color_Off}"
     cd $HOME
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+
+    # -- Install ASDF Manager Package
 
     echo -e "${Green}Install NodeJS..${Color_Off}"
     cd $HOME
@@ -104,27 +104,31 @@ install() {
     asdf install dotnet-core latest
     asdf global dotnet-core latest
     
-    
+    # -- Install Yarn
+
     echo -e "${Green}Install Yarn..${Color_Off}"
     echo "Install Yarn"
     cd $HOME
     npm install --global yarn
     yarn
 
+    # -- Lunar Vim
+
     echo -e "${Green}Install LunarVim..${Color_Off}"
     cd $HOME
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
+    # -- Oh-My-Posh
 
-    # echo "Install Alacritty Terminal"
-    # cargo install alacritty
-    # wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg
-    # sudo mv alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-    # sudo desktop-file-install Alacritty.desktop
-    # sudo update-desktop-database
+    echo -e "${Green}Install Oh-My-Posh !${Color_Off}"
+    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+    sudo chmod +x /usr/local/bin/oh-my-posh
 
-    echo "Changer Shell"
+    echo -e "${Green}Change Shell !${Color_Off}"
     chsh -s /bin/zsh
+
+    echo -e "${Green}>> Finish <<${Color_Off}"
+
 }
 
 install

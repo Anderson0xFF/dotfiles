@@ -1,0 +1,19 @@
+#! /bin/bash
+
+source ~/.config/colors
+
+#  themes options:
+#
+#   ->  basic  
+#   ->  basic-floating-radius 
+#   ->  basic-floating-radius-icons 
+#   ->  basic-floating-radius-no-workspace
+export polybar_theme="basic-floating-radius-icons"
+
+# window borders
+
+normal_border_color=${gray}
+focused_border_color=${blue}
+window_border_width=2
+window_gap=25
+split_ratio=12  
