@@ -10,44 +10,41 @@
 # Light Gray   0;37     White         1;37
 
 # Reset
-Color_Off='\033[0m'       # Text Reset
+Color_Off='\033[0m' # Text Reset
 
 # Regular Colors
-Black='\033[0;30m'        # Black
-Red='\033[0;31m'          # Red
-Green='\033[0;32m'        # Green
-Yellow='\033[0;33m'       # Yellow
-Blue='\033[0;34m'         # Blue
-Purple='\033[0;35m'       # Purple
-Cyan='\033[0;36m'         # Cyan
-White='\033[0;37m'        # White
+Black='\033[0;30m'  # Black
+Red='\033[0;31m'    # Red
+Green='\033[0;32m'  # Green
+Yellow='\033[0;33m' # Yellow
+Blue='\033[0;34m'   # Blue
+Purple='\033[0;35m' # Purple
+Cyan='\033[0;36m'   # Cyan
+White='\033[0;37m'  # White
 
 echo -e "${Yellow}"
 cat emot.txt
-echo -e "${Color_Off}" 
+echo -e "${Color_Off}"
 
 install() {
-    if grep -q "Arch Linux"  /etc/os-release
-    then
-    
+    if grep -q "Arch Linux" /etc/os-release; then
+
         echo -e "${Blue}Operation System detected: Arch Linux${Color_Off}"
         chmod +x archlinux/install.sh
         ./archlinux/install.sh
-        
-    elif grep -q "void" /etc/os-release
-    then
-    
+
+    elif grep -q "void" /etc/os-release; then
+
         echo -e "${Green}Operation System detected: Void Linux${Color_Off}"
-	chmod +x void/install.sh
+        chmod +x void/install.sh
         ./void/install.sh
-        
-    elif grep -q "Ubuntu"  /etc/os-release
-    then
-    
-    	echo -e "${Purple}Operation System detected: Ubuntu${Color_Off}"
-    	chmod +x ubuntu/install.sh
-    	./ubuntu/install.sh
-    	
+
+    elif grep -q "Ubuntu" /etc/os-release; then
+
+        echo -e "${Purple}Operation System detected: Ubuntu${Color_Off}"
+        chmod +x ubuntu/install.sh
+        ./ubuntu/install.sh
+
     else
         echo "System not supported."
         return 1
@@ -60,7 +57,6 @@ install() {
     echo -e "${Green}Install wallpapers..${Color_Off}"
     cp -r wallpapers $HOME/
 
-
     echo -e "${Green}Install Nerd Fonts..${Color_Off}"
     cd $HOME
     git clone https://github.com/ryanoasis/nerd-fonts
@@ -71,25 +67,23 @@ install() {
     cd ..
     rm -rf nerd-fonts
 
-
     # -- Install Rust
     echo -e "${Green}Install Rust..${Color_Off}"
     cd $HOME
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
 
-
     # -- Install System Tools
 
     echo -e "${Green}Install System Tools..${Color_Off}"
     cargo install exa bat ytop procs
-    
 
     # -- Install ASDF Manager
 
     echo -e "${Green}Install ASDF Manage.${Color_Off}"
     cd $HOME
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
+    alias asdf="~/.asdf/asdf.sh"
 
     # -- Install ASDF Manager Package
 
@@ -98,16 +92,15 @@ install() {
     asdf plugin add nodejs
     asdf install nodejs latest
     asdf global nodejs latest
-    
+
     echo -e "${Green}Install .NET..${Color_Off}"
     asdf plugin add dotnet-core
     asdf install dotnet-core latest
     asdf global dotnet-core latest
-    
+
     # -- Install Yarn
 
     echo -e "${Green}Install Yarn..${Color_Off}"
-    echo "Install Yarn"
     cd $HOME
     npm install --global yarn
     yarn
