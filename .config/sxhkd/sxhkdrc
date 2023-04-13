@@ -20,6 +20,8 @@ super + {d,r,p}
 super + Escape
 	pkill -USR1 -x sxhkd
 
+alt + Tab
+    bspc node -f next.local || bspc node -f first.local
 
 # Brighness Monitor
 XF86MonBrightnessUp
@@ -89,8 +91,11 @@ super + ctrl + {m,x,y,z}
 super + {q,k}
 	bspc node -{c,k}
 
-
-
+#
+# ======================== move =======================
+#
+super + ctrl + {Left,Down,Up,Right}
+    bspc node -v {-28 0, 0 28, 0 -28, 28 0}
 #
 # ====================== focus/swap ======================
 #

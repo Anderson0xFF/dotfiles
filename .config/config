@@ -2,18 +2,46 @@
 
 source ~/.config/colors
 
+# initialize apps
+declare -A services=(
+  [Sxhkd]="sxhkd"
+  [Dunst]="dunst"
+  [NetworkUI]="nm-applet"
+  [PowerManager]="xfce4-power-manager"
+  [Settings]="xfsettingsd"
+  [Picom]="picom"
+)
+
 #  themes options:
 #
-#   ->  basic  
-#   ->  basic-floating-radius 
-#   ->  basic-floating-radius-icons 
+#   ->  basic
+#   ->  basic-floating-radius
+#   ->  basic-floating-radius-icons
 #   ->  basic-floating-radius-no-workspace
 export polybar_theme="basic-floating-radius-icons"
 
-# window borders
+# Window Manager
+declare -A window_manager=(
+  [normal_border_color]=${gray}
+  [focused_border_color]=${blue}
+  [cursor_theme]="Catppuccin-Mocha-Peach"
+  [mouse_focus]=false
+  [border_width]=2
+  [gap]=25
+)
 
-normal_border_color=${gray}
-focused_border_color=${blue}
-window_border_width=2
-window_gap=25
-split_ratio=12  
+# terminal configuration
+declare -A terminal=(
+  [name]="alacritty"
+  [state]="floating"
+  [width]=2919
+  [height]=1611
+  [pos_x]=0
+  [pos_y]=0
+  [center]=true
+)
+
+#custom rules
+bspc rule -a "Microsoft Teams - Preview" - preview state=floating center=true rectangle=2103x1238+0+0
+bspc rule -a "Code"     - preview state=floating center=true rectangle=2398x1442+0+0
+bspc rule -a "Discord"  - preview state=floating center=true rectangle=2398x1442+0+0

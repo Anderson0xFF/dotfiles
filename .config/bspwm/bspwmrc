@@ -2,71 +2,42 @@
 
 source /home/alynx/.config/config
 
-execute_exists() {
-    # check if command exists and fail otherwise
-    command -v "$1" >/dev/null 2>&1
-    if [[ $? -ne 0 ]]; then
-        return 0;
-    else
-        $1 &
-    fi
-}
-
 bspc monitor -d '1' '2' '3' '4' '5'
 
-bspc config border_width         	$window_border_width
-bspc config window_gap          	$window_gap
-bspc config split_ratio          	$window_gap
+bspc config border_width          ${window_manager[border_width]}
+bspc config window_gap            ${window_manager[gap]}
 
+bspc config borderless_monocle    false
+bspc config gapless_monocle       true
+bspc config focus_follows_pointer ${window_manager[mouse_focus]}
 
-bspc config borderless_monocle   	false
-bspc config gapless_monocle      	true
-bspc config focus_follows_pointer 	false
+bspc config normal_border_color   ${window_manager[normal_border_color]}
+bspc config focused_border_color  ${window_manager[focused_border_color]}
 
-bspc config normal_border_color $normal_border_color
-bspc config focused_border_color $focused_border_color
+bspc rule -a Alacritty state=${terminal[state]} center=${terminal[center]} rectangle=${terminal[width]}x${terminal[height]}+${terminal[pos_x]}+${terminal[pos_y]}
 
-bspc rule -a Alacritty state=floating center=false rectangle=1320x770+2498+1372
-#2498,1372
 xsetroot -cursor_name left_ptr
 
-# --- KILL PROCESS 
- 
-pkill sxhkd 
-pkill xfsettingsd 
-pkill dunst 
-pkill polybar 
-pkill nitrogen 
-pkill picom
-pkill nitrogen
-#pkill gnome-keyring-daemon
-#pkill powerkit
-#pkill xfce4-power-manager
-pkill nm-applet
+for service_name in "${!services[@]}"; do
+  service_command="${services[$service_name]}"
+  echo "Kill $service_name"
+  pkill $service_command
+done
 
+git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
 
-execute_exists nm-applet
-execute_exists sxhkd
-execute_exists xfsettingsd
-#execute_exists xfce4-power-manager
-#execute_exists powerkit
-execute_exists ~/.config/polybar/launch.sh
-execute_exists dunst
-picom --config ~/.config/picom/picom.conf &
+for service_name in "${!services[@]}"; do
+  service_command="${services[$service_name]}"
+  echo "Starting $service_name"
+  $service_command &
+done
 
-# -- Clean Thumbnails
-#rm -rf ~/.cache/thumbnails/normal/*
+nitrogen --restore
+rm -rf ~/.cache/thumbnails/normal/*
 
-# == Keyring 
-#gnome-keyring-daemon -f &
+~/.config/polybar/bin/launch.sh
 
-# -- ABNT_KEY_BR
-bash -c ~/.config/bspwm/key_abnt_2.sh &
+gnome-keyring-daemon -f &
 
-# -- Nitrogen (Wallpapaer)
-nitrogen --restore &
-
-
-# --  WMName for JavaApps
-# wmname LG3D
-# bspc rule -a Screenkey manage=off
+wmname LG3D
+bspc rule -a Screenkey manage=off
