@@ -1,0 +1,1 @@
+sudo dnf install alacritty bat exa cmake zsh wget tmux neovim

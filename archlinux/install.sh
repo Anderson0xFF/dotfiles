@@ -6,7 +6,7 @@ sudo pacman -Syyu
 sudo pacman -S bspwm sxhkd zsh cmake gcc rofi ranger neovim thunar \
   feh nitrogen wget curl xorg xorg-xinit firefox neofetch ninja dunst alacritty \
   picom scrot docker polybar xdg-user-dirs base-devel libxrandr thunar-volman \
-  gvfs openssl vlc upower pavucontrol xfce4-settings tmux
+  gvfs openssl vlc upower pavucontrol xfce4-settings tmux exa bat
 
 
 sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber helvum

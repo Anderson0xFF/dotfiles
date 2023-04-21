@@ -1,3 +1,9 @@
+window:
+  decorations: full
+  dimensions:
+    columns: 100
+    lines: 23
+
 font:
     size: 18
     normal:

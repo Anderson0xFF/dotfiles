@@ -45,17 +45,23 @@ install() {
         chmod +x ubuntu/install.sh
         ./ubuntu/install.sh
 
+    elif grep -q "Fedora Linux" /etc/os-release; then
+
+        echo -e "${Blue}Operation System detected: Fedora${Color_Off}"
+        chmod +x fedora/install.sh
+        ./fedora/install.sh
+    
     else
         echo "System not supported."
         return 1
     fi
 
-    cd $HOME/dotfiles/
-    echo -e "${Green}Install configurations..${Color_Off}"
-    cp -r .config $HOME/
-
+    # -- Install Wallpapers
+    
     echo -e "${Green}Install wallpapers..${Color_Off}"
     cp -r wallpapers $HOME/
+
+    # -- Install Nerd Fonts
 
     echo -e "${Green}Install Nerd Fonts..${Color_Off}"
     cd $HOME
@@ -68,6 +74,7 @@ install() {
     rm -rf nerd-fonts
 
     # -- Install Rust
+
     echo -e "${Green}Install Rust..${Color_Off}"
     cd $HOME
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -76,7 +83,7 @@ install() {
     # -- Install System Tools
 
     echo -e "${Green}Install System Tools..${Color_Off}"
-    cargo install exa bat ytop procs
+    cargo install ytop procs
 
     # -- Install ASDF Manager
 
@@ -116,6 +123,11 @@ install() {
     echo -e "${Green}Install Oh-My-Posh !${Color_Off}"
     sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
     sudo chmod +x /usr/local/bin/oh-my-posh
+    mkdir ~/.poshthemes
+    wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+    unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+    chmod u+rw ~/.poshthemes/*.omp.*
+    rm ~/.poshthemes/themes.zip
 
     echo -e "${Green}Change Shell !${Color_Off}"
     chsh -s /bin/zsh
