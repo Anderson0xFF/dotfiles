@@ -90,27 +90,27 @@ install() {
     echo -e "${Green}Install ASDF Manage.${Color_Off}"
     cd $HOME
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
-    alias asdf="~/.asdf/asdf.sh"
-
-    # -- Install ASDF Manager Package
-
-    echo -e "${Green}Install NodeJS..${Color_Off}"
+    source $HOME/.asdf/asdf.sh
+    
+    echo -e "${Green}Install NodeJS${Color_Off}"
     cd $HOME
     asdf plugin add nodejs
     asdf install nodejs latest
     asdf global nodejs latest
 
-    echo -e "${Green}Install .NET..${Color_Off}"
+    echo -e "${Green}Install .NET ${Color_Off}"
     asdf plugin add dotnet-core
     asdf install dotnet-core latest
     asdf global dotnet-core latest
 
     # -- Install Yarn
 
-    echo -e "${Green}Install Yarn..${Color_Off}"
+    echo -e "${Green}Install Yarn${Color_Off}"
     cd $HOME
     npm install --global yarn
     yarn
+    
+    export PATH="$PATH:$(yarn global bin)"
 
     # -- Lunar Vim
 
@@ -123,6 +123,7 @@ install() {
     echo -e "${Green}Install Oh-My-Posh !${Color_Off}"
     sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
     sudo chmod +x /usr/local/bin/oh-my-posh
+    
     mkdir ~/.poshthemes
     wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
     unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
