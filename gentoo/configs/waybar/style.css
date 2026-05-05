@@ -257,7 +257,7 @@ window#waybar {
 
 tooltip {
   background-color: rgba(12, 12, 12, 0.96);
-  border: 1px solid #585b70;
+  border: none;
   border-radius: 8px;
   color: #cdd6f4;
   padding: 4px 8px; }

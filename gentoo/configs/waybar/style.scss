@@ -8,6 +8,7 @@ $pad-edge: 14px;
 $bg-pill: rgba(12, 12, 12, 0.8);
 $fg: #cdd6f4;
 $bg-tooltip: rgba(12, 12, 12, 0.96);
+$bg-tooltip-border: none;
 
 * {
   font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
@@ -252,7 +253,7 @@ window#waybar {
 
 tooltip {
   background-color: $bg-tooltip;
-  border: 1px solid #585b70;
+  border: none;
   border-radius: $radius;
   color: $fg;
   padding: 4px 8px;

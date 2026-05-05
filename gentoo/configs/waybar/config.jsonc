@@ -127,7 +127,7 @@
       "on-click-right": "ghostty --title=wiremix -e wiremix --tab output",
       "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
       "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-      "max-volume": 150,
+      "max-volume": 100,
       "scroll-step": 5,
       "tooltip-format": "{node_name}: {volume}%"
     },
@@ -204,7 +204,7 @@
     },
     "custom/power": {
       "format": "<span font='Symbols Nerd Font Mono'>󰐥</span>",
-      "tooltip": false,
+      "tooltip-format": "Power",
       "on-click": "~/.config/waybar/scripts/power-menu.sh"
     }
 }

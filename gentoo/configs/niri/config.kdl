@@ -193,6 +193,14 @@ layer-rule {
 */
 
 window-rule {
+    match app-id="^code$"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+window-rule {
     match app-id=r"^com\.mitchellh\.ghostty$"
 
     draw-border-with-background false
