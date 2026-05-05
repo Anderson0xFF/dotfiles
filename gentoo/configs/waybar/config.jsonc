@@ -159,10 +159,12 @@
     "cpu": {
       "format": "<span font='Symbols Nerd Font Mono'></span>",
       "tooltip": true,
+      "interval": 2,
       "tooltip-format": "CPU: {usage}%"
     },
     "memory": {
       "format": "<span font='Symbols Nerd Font Mono'>󰍛</span>",
+      "interval": 5,
       "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB ({percentage}%)"
     },
     "custom/docker": {
@@ -175,6 +177,7 @@
     "temperature": {
       "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
       "critical-threshold": 75,
+      "interval": 5,
       "format": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
       "format-critical": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
       "format-icons": [
@@ -188,7 +191,7 @@
     "disk": {
       "format": "<span font='Symbols Nerd Font Mono'>󰋊</span>",
       "path": "/",
-      "interval": 30,
+      "interval": 5,
       "tooltip-format": "{path}: {used} / {total} ({percentage_used}%)"
     },
     "network": {

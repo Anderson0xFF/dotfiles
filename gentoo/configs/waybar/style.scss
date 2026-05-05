@@ -5,9 +5,9 @@ $pad: 10px;
 $pad-edge: 14px;
 
 // Cores principais
-$bg-pill: rgba(12, 12, 12, 0.7);
+$bg-pill: rgba(12, 12, 12, 0.8);
 $fg: #cdd6f4;
-$bg-tooltip: #1e1e2e;
+$bg-tooltip: rgba(12, 12, 12, 0.96);
 
 * {
   font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
@@ -251,12 +251,19 @@ window#waybar {
 #bluetooth.disabled { color: #6c7086; }
 
 tooltip {
-  background-color: $bg-pill;
+  background-color: $bg-tooltip;
   border: 1px solid #585b70;
-  border-radius: 8px;
+  border-radius: $radius;
   color: $fg;
+  padding: 4px 8px;
 }
 
-tooltip label {
+tooltip decoration {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+tooltip * {
+  background-color: transparent;
   color: $fg;
 }

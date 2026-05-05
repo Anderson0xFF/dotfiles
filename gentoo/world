@@ -72,6 +72,7 @@ sys-apps/xdg-desktop-portal
 sys-auth/elogind
 sys-block/io-scheduler-udev-rules
 sys-boot/grub
+sys-fs/btrfs-progs
 sys-fs/genfstab
 sys-fs/udiskie
 sys-kernel/installkernel

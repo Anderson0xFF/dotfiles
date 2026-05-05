@@ -72,6 +72,7 @@ sys-apps/xdg-desktop-portal-1.20.4-r1::gentoo
 sys-auth/elogind-255.17-r1::gentoo
 sys-block/io-scheduler-udev-rules-2::gentoo
 sys-boot/grub-2.14-r5::gentoo
+sys-fs/btrfs-progs-6.19.1::gentoo
 sys-fs/genfstab-31::gentoo
 sys-fs/udiskie-2.5.7-r1::gentoo
 sys-kernel/installkernel-67::gentoo

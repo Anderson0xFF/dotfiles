@@ -43,7 +43,7 @@ window#waybar {
 #custom-distro,
 #language,
 #network.speed {
-  background-color: rgba(12, 12, 12, 0.7); }
+  background-color: rgba(12, 12, 12, 0.8); }
 
 #custom-distro {
   border-radius: 8px 0 0 8px;
@@ -58,7 +58,7 @@ window#waybar {
 #custom-mpris-next,
 #custom-cava,
 #custom-mpris-title {
-  background-color: rgba(12, 12, 12, 0.7);
+  background-color: rgba(12, 12, 12, 0.8);
   color: #f5c2e7; }
 
 #custom-mpris-prev {
@@ -134,7 +134,7 @@ window#waybar {
 #clock,
 #custom-notification,
 #custom-color-scheme {
-  background-color: rgba(12, 12, 12, 0.7); }
+  background-color: rgba(12, 12, 12, 0.8); }
 
 #clock {
   font-weight: bold;
@@ -156,7 +156,7 @@ window#waybar {
   padding: 0; }
 
 #tray {
-  background-color: rgba(12, 12, 12, 0.7);
+  background-color: rgba(12, 12, 12, 0.8);
   border-radius: 8px;
   padding: 0 10px;
   margin-right: 6px; }
@@ -172,7 +172,7 @@ window#waybar {
 #network,
 #temperature,
 #custom-power {
-  background-color: rgba(12, 12, 12, 0.7);
+  background-color: rgba(12, 12, 12, 0.8);
   padding: 0 10px; }
 
 #disk {
@@ -256,12 +256,18 @@ window#waybar {
   color: #6c7086; }
 
 tooltip {
-  background-color: rgba(12, 12, 12, 0.7);
+  background-color: rgba(12, 12, 12, 0.96);
   border: 1px solid #585b70;
   border-radius: 8px;
-  color: #cdd6f4; }
+  color: #cdd6f4;
+  padding: 4px 8px; }
 
-tooltip label {
+tooltip decoration {
+  background-color: transparent;
+  box-shadow: none; }
+
+tooltip * {
+  background-color: transparent;
   color: #cdd6f4; }
 
 /*# sourceMappingURL=style.css.map */
