@@ -1,0 +1,207 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 48,
+    "spacing": 0,
+    "modules-left": [
+      "custom/distro",
+      "niri/language",
+      "network#speed",
+      "custom/mpris-prev",
+      "custom/mpris-play",
+      "custom/mpris-next",
+      "custom/cava",
+      "custom/mpris-title"
+    ],
+    "modules-center": [
+      "clock",
+      "custom/notification",
+      "custom/color-scheme"
+    ],
+    "modules-right": [
+      "tray",
+      "disk",
+      "cpu",
+      "memory",
+      "custom/docker",
+      "custom/brightness",
+      "wireplumber",
+      "pulseaudio#microphone",
+      "bluetooth",
+      "network",
+      "temperature",
+      "custom/power"
+    ],
+    
+    "custom/distro": {
+      "format": "{}",
+      "exec": "python ~/.config/waybar/scripts/distro.py",
+      "return-type": "json",
+      "interval": 2000
+    },
+    "bluetooth": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰂯</span>",
+      "format-connected": "<span font='Symbols Nerd Font Mono'>󰂯</span> {device_alias}",
+      "format-disabled": "<span font='Symbols Nerd Font Mono'>󰂲</span>",
+      "tooltip-format": "{controller_alias}\n{num_connections} connected",
+      "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}",
+      "on-click": "bluetoothctl power toggle"
+    },
+    "niri/language": {
+      "format": "{}",
+      "on-click": "niri msg action switch-layout next"
+    },
+    "network#speed": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰇚</span> {bandwidthDownBits}  <span font='Symbols Nerd Font Mono'>󰕒</span> {bandwidthUpBits}",
+      "interval": 2,
+      "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    "custom/notification": {
+      "exec": "~/.config/waybar/scripts/notification.sh",
+      "return-type": "json",
+      "interval": 2,
+      "escape": false,
+      "tooltip": false,
+      "on-click": "makoctl dismiss",
+      "on-click-right": "makoctl dismiss --all"
+    },
+    "custom/color-scheme": {
+      "exec": "~/.config/waybar/scripts/color-scheme.sh",
+      "return-type": "json",
+      "interval": 5,
+      "signal": 9,
+      "escape": false,
+      "on-click": "~/.config/waybar/scripts/color-scheme.sh toggle"
+    },
+    "custom/mpris-prev": {
+      "exec": "~/.config/waybar/scripts/mpris-prev.py",
+      "return-type": "json",
+      "interval": 1,
+      "escape": false,
+      "on-click": "~/.config/waybar/scripts/mpris-cmd.py previous"
+    },
+    "custom/mpris-play": {
+      "exec": "~/.config/waybar/scripts/mpris-play.py",
+      "return-type": "json",
+      "interval": 1,
+      "escape": false,
+      "on-click": "~/.config/waybar/scripts/mpris-cmd.py play-pause"
+    },
+    "custom/mpris-next": {
+      "exec": "~/.config/waybar/scripts/mpris-next.py",
+      "return-type": "json",
+      "interval": 1,
+      "escape": false,
+      "on-click": "~/.config/waybar/scripts/mpris-cmd.py next"
+    },
+    "custom/cava": {
+      "exec": "~/.config/waybar/scripts/cava.py",
+      "return-type": "json",
+      "escape": false,
+      "restart-interval": 1,
+      "tooltip": false
+    },
+    "custom/mpris-title": {
+      "exec": "~/.config/waybar/scripts/mpris-title.py",
+      "return-type": "json",
+      "interval": 1,
+      "escape": false,
+      "on-scroll-up": "~/.config/waybar/scripts/mpris-cmd.py next",
+      "on-scroll-down": "~/.config/waybar/scripts/mpris-cmd.py previous"
+    },
+    "clock": {
+      "format": "{:%H:%M  ·  %a %d}",
+      "format-alt": "{:%A, %d de %B de %Y  ·  %H:%M:%S}",
+      "tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "wireplumber": {
+      "format": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
+      "format-muted": "<span font='Symbols Nerd Font Mono'>󰝟</span>",
+      "format-icons": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ],
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "ghostty --title=wiremix -e wiremix --tab output",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+      "max-volume": 150,
+      "scroll-step": 5,
+      "tooltip-format": "{node_name}: {volume}%"
+    },
+    "custom/brightness": {
+      "exec": "~/.config/waybar/scripts/brightness.sh",
+      "return-type": "json",
+      "interval": 5,
+      "signal": 8,
+      "on-scroll-up": "ddcutil setvcp 10 + 10 && pkill -RTMIN+8 waybar",
+      "on-scroll-down": "ddcutil setvcp 10 - 10 && pkill -RTMIN+8 waybar",
+      "on-click": "~/.config/waybar/scripts/brightness.sh",
+      "tooltip": true
+    },
+    "pulseaudio#microphone": {
+      "format": "<span font='Symbols Nerd Font Mono'>{format_source}</span>",
+      "format-source": "󰍬",
+      "format-source-muted": "󰍭",
+      "tooltip-format": "Mic: {source_volume}% ({source_desc})",
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+      "on-click-right": "ghostty --title=wiremix -e wiremix --tab input",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+      "scroll-step": 5
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 8
+    },
+    "cpu": {
+      "format": "<span font='Symbols Nerd Font Mono'></span>",
+      "tooltip": true,
+      "tooltip-format": "CPU: {usage}%"
+    },
+    "memory": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰍛</span>",
+      "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB ({percentage}%)"
+    },
+    "custom/docker": {
+      "exec": "~/.config/waybar/scripts/docker.sh",
+      "return-type": "json",
+      "interval": 5,
+      "escape": false,
+      "tooltip": true
+    },
+    "temperature": {
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 75,
+      "format": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
+      "format-critical": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
+      "format-icons": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "tooltip-format": "{temperatureC}°C"
+    },
+    "disk": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰋊</span>",
+      "path": "/",
+      "interval": 30,
+      "tooltip-format": "{path}: {used} / {total} ({percentage_used}%)"
+    },
+    "network": {
+      "format-wifi": "<span font='Symbols Nerd Font Mono'>󰖩</span>",
+      "format-ethernet": "<span font='Symbols Nerd Font Mono'>󰈀</span>",
+      "format-disconnected": "<span font='Symbols Nerd Font Mono'>󰖪</span>",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+      "tooltip-format-ethernet": "{ifname}: {ipaddr}",
+      "on-click": "ghostty --title=nmtui -e nmtui"
+    },
+    "custom/power": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰐥</span>",
+      "tooltip": false,
+      "on-click": "~/.config/waybar/scripts/power-menu.sh"
+    }
+}

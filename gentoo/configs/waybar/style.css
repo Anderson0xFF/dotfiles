@@ -1,0 +1,267 @@
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrainsMono NF", "Symbols Nerd Font Mono", monospace;
+  font-size: 17px;
+  min-height: 0; }
+
+window#waybar {
+  background-color: transparent;
+  color: #cdd6f4;
+  border: none; }
+
+#custom-distro,
+#bluetooth,
+#language,
+#network.speed,
+#custom-notification,
+#custom-color-scheme,
+#custom-mpris-prev,
+#custom-mpris-play,
+#custom-mpris-next,
+#custom-cava,
+#custom-mpris-title,
+#clock,
+#tray,
+#wireplumber,
+#pulseaudio.microphone,
+#custom-brightness,
+#disk,
+#cpu,
+#memory,
+#custom-docker,
+#temperature,
+#network,
+#custom-power {
+  background-color: transparent;
+  padding: 0 8px;
+  color: #cdd6f4; }
+
+.modules-left {
+  background-color: transparent;
+  margin: 5px 0 5px 6px;
+  padding: 0; }
+
+#custom-distro,
+#language,
+#network.speed {
+  background-color: rgba(12, 12, 12, 0.7); }
+
+#custom-distro {
+  border-radius: 8px 0 0 8px;
+  padding-left: 14px; }
+
+#network.speed {
+  border-radius: 0 8px 8px 0;
+  padding-right: 14px; }
+
+#custom-mpris-prev,
+#custom-mpris-play,
+#custom-mpris-next,
+#custom-cava,
+#custom-mpris-title {
+  background-color: rgba(12, 12, 12, 0.7);
+  color: #f5c2e7; }
+
+#custom-mpris-prev {
+  border-radius: 8px 0 0 8px;
+  padding: 0 6px 0 14px;
+  margin-left: 6px;
+  font-size: 15px;
+  transition: color 180ms ease, background-color 180ms ease; }
+
+#custom-mpris-prev:hover {
+  background-color: rgba(30, 30, 46, 0.95); }
+
+#custom-mpris-play {
+  padding: 0 6px;
+  font-size: 15px;
+  transition: color 180ms ease, background-color 180ms ease; }
+
+#custom-mpris-play.playing {
+  color: #a6e3a1; }
+
+#custom-mpris-play.paused {
+  color: #f9e2af; }
+
+#custom-mpris-play:hover {
+  background-color: rgba(30, 30, 46, 0.95); }
+
+#custom-mpris-next {
+  padding: 0 10px 0 6px;
+  font-size: 15px;
+  transition: color 180ms ease, background-color 180ms ease; }
+
+#custom-mpris-next:hover {
+  background-color: rgba(30, 30, 46, 0.95); }
+
+#custom-cava {
+  padding: 0 8px;
+  color: #cba6f7;
+  font-size: 15px;
+  letter-spacing: -3px;
+  min-width: 110px; }
+
+#custom-mpris-title {
+  border-radius: 0 8px 8px 0;
+  padding: 0 14px 0 6px;
+  color: #f5c2e7;
+  font-weight: 500; }
+
+#custom-mpris-title.paused {
+  color: #9399b2; }
+
+#custom-mpris-prev.stopped,
+#custom-mpris-play.stopped,
+#custom-mpris-next.stopped,
+#custom-mpris-title.stopped,
+#custom-cava.stopped,
+#custom-mpris-prev.empty,
+#custom-mpris-play.empty,
+#custom-mpris-next.empty,
+#custom-mpris-title.empty,
+#custom-cava.empty {
+  background-color: transparent;
+  color: transparent;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  border-radius: 0; }
+
+.modules-center {
+  background-color: transparent;
+  margin: 5px 0;
+  padding: 0; }
+
+#clock,
+#custom-notification,
+#custom-color-scheme {
+  background-color: rgba(12, 12, 12, 0.7); }
+
+#clock {
+  font-weight: bold;
+  border-radius: 8px 0 0 8px;
+  padding: 0 10px 0 14px; }
+
+#custom-notification {
+  border-radius: 0 8px 8px 0;
+  padding: 0 14px 0 8px; }
+
+#custom-color-scheme {
+  border-radius: 8px;
+  padding: 0 14px;
+  margin-left: 6px; }
+
+.modules-right {
+  background-color: transparent;
+  margin: 5px 6px 5px 0;
+  padding: 0; }
+
+#tray {
+  background-color: rgba(12, 12, 12, 0.7);
+  border-radius: 8px;
+  padding: 0 10px;
+  margin-right: 6px; }
+
+#disk,
+#cpu,
+#memory,
+#custom-docker,
+#custom-brightness,
+#wireplumber,
+#pulseaudio.microphone,
+#bluetooth,
+#network,
+#temperature,
+#custom-power {
+  background-color: rgba(12, 12, 12, 0.7);
+  padding: 0 10px; }
+
+#disk {
+  border-radius: 8px 0 0 8px;
+  padding-left: 14px;
+  margin-left: 6px; }
+
+#custom-docker {
+  border-radius: 0 8px 8px 0;
+  padding-right: 14px; }
+
+#custom-brightness {
+  border-radius: 8px 0 0 8px;
+  padding-left: 14px;
+  margin-left: 6px; }
+
+#temperature {
+  border-radius: 0 8px 8px 0;
+  padding-right: 14px; }
+
+#custom-power {
+  border-radius: 8px;
+  padding: 0 14px;
+  margin-left: 6px; }
+
+#tray {
+  color: #9399b2; }
+
+#wireplumber {
+  color: #f5c2e7; }
+
+#wireplumber.muted {
+  color: #6c7086; }
+
+#cpu {
+  color: #a6e3a1; }
+
+#memory {
+  color: #89b4fa; }
+
+#temperature {
+  color: #fab387; }
+
+#temperature.critical {
+  color: #f38ba8; }
+
+#disk {
+  color: #cba6f7; }
+
+#custom-docker {
+  color: #0db7ed; }
+
+#network {
+  color: #89dceb; }
+
+#custom-power {
+  color: #f38ba8; }
+
+#custom-notification.has-notifications {
+  color: #f9e2af; }
+
+#custom-color-scheme.dark {
+  color: #89b4fa; }
+
+#custom-color-scheme.light {
+  color: #f9e2af; }
+
+#custom-brightness {
+  color: #f9e2af; }
+
+#pulseaudio.microphone {
+  color: #eba0ac; }
+
+#pulseaudio.microphone.source-muted {
+  color: #6c7086; }
+
+#bluetooth {
+  color: #89b4fa; }
+
+#bluetooth.disabled {
+  color: #6c7086; }
+
+tooltip {
+  background-color: rgba(12, 12, 12, 0.7);
+  border: 1px solid #585b70;
+  border-radius: 8px;
+  color: #cdd6f4; }
+
+tooltip label {
+  color: #cdd6f4; }
+
+/*# sourceMappingURL=style.css.map */

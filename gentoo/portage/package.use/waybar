@@ -1,0 +1,4 @@
+gui-apps/waybar experimental
+# required by app-emulation/vmware-workstation-25.2.1.25219725-r1::pf4public
+# required by vmware-workstation (argument)
+>=media-plugins/alsa-plugins-1.2.12 speex

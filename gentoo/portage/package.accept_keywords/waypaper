@@ -1,0 +1,4 @@
+dev-python/imageio-ffmpeg ~amd64
+# required by gui-apps/waypaper-2.7-r1::guru
+# required by waypaper (argument)
+=dev-python/imageio-2.37.3-r1 ~amd64

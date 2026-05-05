@@ -1,0 +1,85 @@
+       NetworkManager |      default                           
+               agetty |                                        
+               binfmt | boot                                   
+            bluetooth |                                        
+             bootlogd |                                        
+             bootmisc | boot                                   
+              cgroups |                                 sysinit
+              chronyd |      default                           
+          consolefont |                                        
+           containerd |                                        
+               cronie |      default                           
+                cupsd |                                        
+                 dbus |      default                           
+                devfs |                                 sysinit
+        device-mapper |                                        
+               dhcpcd |                                        
+              dmcrypt |                                        
+                dmesg |                                 sysinit
+              dnsmasq |                                        
+               docker |      default                           
+             ebtables |                                        
+              elogind | boot                                   
+                 fsck | boot                                   
+                 fuse |                                        
+           git-daemon |                                        
+                  gpm |                                        
+             hostname | boot                                   
+              hwclock | boot                                   
+            ip6tables |                                        
+             iptables |                                        
+              keymaps | boot                                   
+            killprocs |                        shutdown        
+    kmod-static-nodes |                                 sysinit
+       libvirt-guests |                                        
+             libvirtd |      default                           
+                local |      default nonetwork                 
+           localmount | boot                                   
+             loopback | boot                                   
+              metalog |                                        
+         modemmanager |                                        
+              modules | boot                                   
+             mount-ro |                        shutdown        
+                 mtab | boot                                   
+           net-online |                                        
+               net.lo |                                        
+             netmount |      default                           
+           nullmailer |                                        
+              numlock |                                        
+              osclock |                                        
+              pciparm |                                        
+        postgresql-18 |                                        
+               procfs | boot                                   
+           pydoc-3.13 |                                        
+           pydoc-3.14 |                                        
+                radvd |                                        
+                redis |                                        
+       redis-sentinel |                                        
+                 root | boot                                   
+               rsyncd |                                        
+             runsvdir |                                        
+            s6-svscan |                                        
+         save-keymaps | boot                                   
+    save-termencoding | boot                                   
+            savecache |                        shutdown        
+              seedrng | boot                                   
+                 sshd |                                        
+                 swap | boot                                   
+              swclock |                                        
+               sysctl | boot                                   
+                sysfs |                                 sysinit
+             sysklogd |      default                           
+ systemd-tmpfiles-setup | boot                                   
+ systemd-tmpfiles-setup-dev |                                 sysinit
+         termencoding | boot                                   
+                 udev |                                 sysinit
+          udev-settle |                                        
+         udev-trigger |                                 sysinit
+                 user |                                        
+           user.alynx |                                        
+          user.greetd |                                        
+            virtlockd |                                        
+             virtlogd |                                        
+               vmware |      default                           
+ vmware-USBArbitrator |                                        
+       wpa_supplicant |                                        

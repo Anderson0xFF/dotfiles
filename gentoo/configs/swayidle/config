@@ -1,0 +1,3 @@
+timeout 1800 'pidof -x swaylock || loginctl hibernate'
+before-sleep 'pidof -x swaylock || swaylock'
+lock 'pidof -x swaylock || swaylock'
