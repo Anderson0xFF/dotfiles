@@ -27,6 +27,8 @@ window#waybar {
 #disk,
 #cpu,
 #memory,
+#memory.swap,
+#custom-gpu,
 #custom-docker,
 #temperature,
 #network,
@@ -164,6 +166,8 @@ window#waybar {
 #disk,
 #cpu,
 #memory,
+#memory.swap,
+#custom-gpu,
 #custom-docker,
 #custom-brightness,
 #wireplumber,
@@ -212,6 +216,12 @@ window#waybar {
 
 #memory {
   color: #89b4fa; }
+
+#memory.swap {
+  color: #94e2d5; }
+
+#custom-gpu {
+  color: #f5c2e7; }
 
 #temperature {
   color: #fab387; }

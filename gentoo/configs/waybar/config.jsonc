@@ -23,6 +23,8 @@
       "disk",
       "cpu",
       "memory",
+      "memory#swap",
+      "custom/gpu",
       "custom/docker",
       "custom/brightness",
       "wireplumber",
@@ -166,6 +168,18 @@
       "format": "<span font='Symbols Nerd Font Mono'>󰍛</span>",
       "interval": 5,
       "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB ({percentage}%)"
+    },
+    "memory#swap": {
+      "format": "<span font='Symbols Nerd Font Mono'>󰯍</span>",
+      "interval": 5,
+      "tooltip-format": "Swap: {swapUsed:0.1f} GiB / {swapTotal:0.1f} GiB ({swapPercentage}%)"
+    },
+    "custom/gpu": {
+      "exec": "~/.config/waybar/scripts/gpu.sh",
+      "return-type": "json",
+      "interval": 2,
+      "format": "<span font='Symbols Nerd Font Mono'>󰢮</span>",
+      "tooltip": true
     },
     "custom/docker": {
       "exec": "~/.config/waybar/scripts/docker.sh",
