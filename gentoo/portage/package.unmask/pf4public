@@ -1,0 +1,3 @@
+acct-group/vmware::pf4public
+app-emulation/vmware-modules::pf4public
+app-emulation/vmware-workstation::pf4public

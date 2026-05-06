@@ -30,6 +30,7 @@ dev-db/redis
 dev-lang/rust
 dev-ruby/sass
 dev-util/claude-code
+dev-util/smem
 dev-zig/zls
 games-util/mangohud
 gui-apps/awww

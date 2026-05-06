@@ -36,7 +36,6 @@
                 local |      default nonetwork                 
            localmount | boot                                   
              loopback | boot                                   
-              metalog |                                        
          modemmanager |                                        
               modules | boot                                   
              mount-ro |                        shutdown        
