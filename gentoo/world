@@ -30,6 +30,7 @@ dev-db/redis
 dev-lang/rust
 dev-ruby/sass
 dev-util/claude-code
+dev-util/glslang
 dev-util/smem
 dev-zig/zls
 games-util/mangohud
@@ -54,7 +55,9 @@ media-fonts/maple-mono
 media-fonts/noto
 media-fonts/noto-emoji
 media-fonts/symbols-nerd-font
+media-gfx/renderdoc
 media-libs/mesa
+media-libs/shaderc
 media-sound/cava
 media-sound/spotify
 media-sound/wiremix
