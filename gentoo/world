@@ -1,5 +1,6 @@
 app-admin/sudo
 app-admin/sysklogd
+app-arch/xarchiver
 app-containers/docker
 app-containers/docker-cli
 app-containers/docker-compose
@@ -56,6 +57,7 @@ media-fonts/noto
 media-fonts/noto-emoji
 media-fonts/symbols-nerd-font
 media-gfx/renderdoc
+media-gfx/swayimg
 media-libs/mesa
 media-libs/shaderc
 media-sound/cava
@@ -69,9 +71,12 @@ net-misc/bridge-utils
 net-misc/chrony
 net-misc/dhcpcd
 net-misc/networkmanager
+net-wireless/bluetui
 sys-apps/bat
 sys-apps/eza
 sys-apps/mlocate
+sys-apps/usb_modeswitch
+sys-apps/usbutils
 sys-apps/xdg-desktop-portal
 sys-auth/elogind
 sys-block/io-scheduler-udev-rules
@@ -79,8 +84,11 @@ sys-boot/grub
 sys-fs/btrfs-progs
 sys-fs/genfstab
 sys-fs/udiskie
+sys-kernel/dkms
 sys-kernel/installkernel
 sys-kernel/linux-firmware
+sys-kernel/linux-headers
+sys-power/power-profiles-daemon
 sys-process/cronie
 sys-process/htop
 www-client/firefox-bin
@@ -88,3 +96,4 @@ x11-misc/qt5ct
 x11-misc/xdg-user-dirs
 x11-terms/ghostty
 xfce-base/thunar
+xfce-extra/thunar-archive-plugin

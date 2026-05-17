@@ -31,6 +31,7 @@
       "pulseaudio#microphone",
       "bluetooth",
       "network",
+      "power-profiles-daemon",
       "temperature",
       "custom/power"
     ],
@@ -43,12 +44,15 @@
     },
     "bluetooth": {
       "format": "<span font='Symbols Nerd Font Mono'>󰂯</span>",
-      "format-connected": "<span font='Symbols Nerd Font Mono'>󰂯</span> {device_alias}",
+      "format-on": "<span font='Symbols Nerd Font Mono'>󰂯</span>",
+      "format-off": "<span font='Symbols Nerd Font Mono'>󰂲</span>",
+      "format-connected": "<span font='Symbols Nerd Font Mono'>󰂱</span> {device_alias}",
       "format-disabled": "<span font='Symbols Nerd Font Mono'>󰂲</span>",
       "tooltip-format": "{controller_alias}\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}",
-      "on-click": "bluetoothctl power toggle"
+      "on-click": "bluetoothctl show | grep -q 'Powered: yes' && bluetoothctl power off || bluetoothctl power on",
+      "on-click-right": "ghostty --title=bluetui -e bluetui"
     },
     "niri/language": {
       "format": "{}",
@@ -187,6 +191,16 @@
       "interval": 5,
       "escape": false,
       "tooltip": true
+    },
+    "power-profiles-daemon": {
+      "format": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
+      "tooltip-format": "Perfil: {profile}\nDriver: {driver}",
+      "format-icons": {
+        "default": "󰗑",
+        "performance": "󱓞",
+        "balanced": "󰗑",
+        "power-saver": "󰌪"
+      }
     },
     "temperature": {
       "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",

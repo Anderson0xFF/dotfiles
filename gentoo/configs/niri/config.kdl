@@ -144,8 +144,8 @@ window-rule {
     open-floating true
     default-column-width {}
     default-window-height {}
-    max-width 800
-    max-height 600
+    max-width 1020
+    max-height 720
 }
 
 window-rule {
@@ -153,8 +153,8 @@ window-rule {
     open-floating true
     default-column-width {}
     default-window-height {}
-    max-width 800
-    max-height 600
+    max-width 1020
+    max-height 720
 }
 
 window-rule {

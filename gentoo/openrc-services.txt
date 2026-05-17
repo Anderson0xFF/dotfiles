@@ -1,7 +1,7 @@
        NetworkManager |      default                           
                agetty |                                        
                binfmt | boot                                   
-            bluetooth |                                        
+            bluetooth |      default                           
              bootlogd |                                        
              bootmisc | boot                                   
               cgroups |                                 sysinit
@@ -48,6 +48,7 @@
               osclock |                                        
               pciparm |                                        
         postgresql-18 |                                        
+ power-profiles-daemon |      default                           
                procfs | boot                                   
            pydoc-3.13 |                                        
            pydoc-3.14 |                                        

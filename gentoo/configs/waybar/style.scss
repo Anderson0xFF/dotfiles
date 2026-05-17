@@ -47,6 +47,7 @@ window#waybar {
 #custom-docker,
 #temperature,
 #network,
+#power-profiles-daemon,
 #custom-power {
   background-color: transparent;
   padding: 0 8px;
@@ -199,6 +200,7 @@ window#waybar {
 #pulseaudio.microphone,
 #bluetooth,
 #network,
+#power-profiles-daemon,
 #temperature,
 #custom-power {
   background-color: $bg-pill;
@@ -256,6 +258,9 @@ window#waybar {
 #pulseaudio.microphone.source-muted { color: #6c7086; }
 #bluetooth { color: #89b4fa; }
 #bluetooth.disabled { color: #6c7086; }
+#power-profiles-daemon.power-saver { color: #a6e3a1; }
+#power-profiles-daemon.balanced    { color: #f9e2af; }
+#power-profiles-daemon.performance { color: #f38ba8; }
 
 tooltip {
   background-color: $bg-tooltip;
