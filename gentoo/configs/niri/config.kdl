@@ -36,7 +36,7 @@ spawn-at-startup "gentoo-pipewire-launcher"
 spawn-at-startup "udiskie" "--tray"
 
 spawn-at-startup "waybar"
-spawn-at-startup "sh" "-c" "sleep 1 && waypaper --restore"
+spawn-at-startup "sh" "-c" "waypaper --restore"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "mako"
 spawn-at-startup "swayidle" "-w"
