@@ -31,17 +31,12 @@ environment {
     XDG_SESSION_TYPE "wayland"
 }
 
-/*
-spawn-at-startup "pipewire"
-spawn-at-startup "pipewire-pulse"
-spawn-at-startup "wireplumber"
-*/
 
 spawn-at-startup "gentoo-pipewire-launcher"
 spawn-at-startup "udiskie" "--tray"
 
 spawn-at-startup "waybar"
-spawn-at-startup "awww-daemon"
+spawn-at-startup "sh" "-c" "sleep 1 && waypaper --restore"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "mako"
 spawn-at-startup "swayidle" "-w"
@@ -50,10 +45,10 @@ spawn-at-startup "sh" "-c" "gsettings set org.gnome.desktop.interface color-sche
 
 
 layout {
-    gaps 10
+    gaps 8
     struts {
-        left 12
-        right 12
+        left 18
+        right 18
         bottom 8
     }
 
@@ -295,9 +290,10 @@ gestures {
     hot-corners {}
 }
 
+
 output "DP-1" {
     scale 1.0
-    mode "3840x2160@239.991"
+    mode "3840x2160@240.084"
 }
 
 /*

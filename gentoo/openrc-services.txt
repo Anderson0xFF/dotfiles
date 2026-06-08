@@ -1,5 +1,6 @@
        NetworkManager |      default                           
                agetty |                                        
+              anydesk |                                        
                binfmt | boot                                   
             bluetooth |      default                           
              bootlogd |                                        
@@ -36,6 +37,9 @@
                 local |      default nonetwork                 
            localmount | boot                                   
              loopback | boot                                   
+      mit-krb5kadmind |                                        
+          mit-krb5kdc |                                        
+       mit-krb5kpropd |                                        
          modemmanager |                                        
               modules | boot                                   
              mount-ro |                        shutdown        
@@ -43,6 +47,7 @@
            net-online |                                        
                net.lo |                                        
              netmount |      default                           
+             nftables |                                        
            nullmailer |                                        
               numlock |                                        
               osclock |                                        
