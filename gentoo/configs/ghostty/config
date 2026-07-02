@@ -43,9 +43,9 @@
 # resize-overlay-duration = 4s 200ms
 
 
-font-family = "Maple Mono"
+font-family = "Maple Mono NL"
 background = "#000000"
 background-opacity = 0.7
-font-size = 15
+font-size = 18
 window-decoration = false
 confirm-close-surface = false

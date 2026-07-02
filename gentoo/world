@@ -76,6 +76,7 @@ media-video/pipewire
 media-video/vlc
 media-video/wireplumber
 net-im/discord
+net-libs/nodejs
 net-misc/anydesk
 net-misc/bridge-utils
 net-misc/chrony

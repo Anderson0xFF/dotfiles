@@ -85,6 +85,7 @@ layout {
 window-rule {
     geometry-corner-radius 4
     clip-to-geometry true
+    draw-border-with-background false
 }
 
 window-rule {
@@ -108,10 +109,10 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^firefox$" title="^Picture-in-Picture$"
+    match app-id="^firefox-bin$" title="^Picture-in-Picture$"
     open-floating true
-    max-width 640
-    max-height 360
+    max-width 700
+    max-height 400
 }
 
 window-rule {
@@ -194,6 +195,18 @@ window-rule {
         xray false
     }
 }
+
+window-rule {
+    match app-id="^dev.zed.Zed$"
+
+    draw-border-with-background false
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
 
 window-rule {
     match app-id=r"^com\.mitchellh\.ghostty$"
