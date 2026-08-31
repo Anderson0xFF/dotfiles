@@ -22,6 +22,7 @@ blur {
 prefer-no-csd
 
 environment {
+    LC_TIME "pt_BR.UTF-8"
     GTK_USE_PORTAL "1"
     MOZ_ENABLE_WAYLAND "1"
     QT_QPA_PLATFORM "wayland;xcb"
@@ -34,18 +35,22 @@ environment {
 
 spawn-at-startup "gentoo-pipewire-launcher"
 spawn-at-startup "udiskie" "--tray"
+spawn-at-startup "sh" "-c" "dbus-update-activation-environment --all"
 
-spawn-at-startup "waybar"
+/*spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "waypaper --restore"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "mako"
 spawn-at-startup "swayidle" "-w"
-spawn-at-startup "sh" "-c" "dbus-update-activation-environment --all"
+
 spawn-at-startup "sh" "-c" "gsettings set org.gnome.desktop.interface color-scheme prefer-dark; gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark"
+*/
+
+spawn-at-startup "noctalia"
 
 
 layout {
-    gaps 8
+    gaps 4
     struts {
         left 18
         right 18
@@ -63,9 +68,9 @@ layout {
 
     default-column-width { proportion 0.5; }
 
-    border {
-        off
-    }
+    // border {
+    //     off
+    // }
 
     shadow {
         on
@@ -83,29 +88,29 @@ layout {
 }
 
 window-rule {
-    geometry-corner-radius 4
+    geometry-corner-radius 2
     clip-to-geometry true
     draw-border-with-background false
 }
+
+window-rule {
+    // Qualquer janela do Thunar (app-id real é "Thunar", via XWayland)...
+    match app-id=r#"(?i)^thunar$"#
+
+    // ...EXCETO a janela principal (que termina com " - Thunar")
+    exclude title=r#" - Thunar$"#
+
+    open-floating true
+    max-width 800
+    max-height 600
+}
+
 
 window-rule {
     match app-id="^xdg-desktop-portal"
     open-floating true
     max-width 1200
     max-height 800
-}
-
-window-rule {
-    match app-id="^thunar$" title="Open With"
-    match app-id="^thunar$" title="Properties"
-    match app-id="^thunar$" title="Rename"
-    match app-id="^thunar$" title="Create"
-    match app-id="^thunar$" title="Confirm"
-    match app-id="^thunar$" title="Delete"
-    match app-id="^thunar$" title="Execute"
-    open-floating true
-    max-width 800
-    max-height 600
 }
 
 window-rule {
@@ -116,12 +121,12 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^firefox$" title="^Enter name of file to save to"
-    match app-id="^firefox$" title="^Salvar como$"
-    match app-id="^firefox$" title="^File Upload$"
-    match app-id="^firefox$" title="^Enviar arquivo$"
-    match app-id="^firefox$" title="^Authentication Required$"
-    match app-id="^firefox$" title="^Autenticação necessária$"
+    match app-id="^firefox(-bin)?$" title="^Enter name of file to save to"
+    match app-id="^firefox(-bin)?$" title="^Salvar como$"
+    match app-id="^firefox(-bin)?$" title="^File Upload$"
+    match app-id="^firefox(-bin)?$" title="^Enviar arquivo$"
+    match app-id="^firefox(-bin)?$" title="^Authentication Required$"
+    match app-id="^firefox(-bin)?$" title="^Autenticação necessária$"
     open-floating true
     max-width 960
     max-height 720
@@ -135,6 +140,7 @@ window-rule {
     max-height 400
 }
 
+/* nmtui: substituido pelo painel Network do noctalia (clique no widget de rede)
 window-rule {
     match app-id=r"^com\.mitchellh\.ghostty$" title="^nmtui$"
     open-floating true
@@ -143,7 +149,9 @@ window-rule {
     max-width 1020
     max-height 720
 }
+*/
 
+/* wiremix: substituido pelo painel Audio do noctalia (clique no widget de volume)
 window-rule {
     match app-id=r"^com\.mitchellh\.ghostty$" title="^wiremix$"
     open-floating true
@@ -152,14 +160,18 @@ window-rule {
     max-width 1020
     max-height 720
 }
+*/
 
+/* waypaper: substituido pelo painel Wallpaper do noctalia
 window-rule {
     match app-id="^waypaper$"
     open-floating true
     max-width 900
     max-height 600
 }
+*/
 
+/* walker: substituido pelo launcher do noctalia
 layer-rule {
     match namespace="^walker$"
 
@@ -168,7 +180,9 @@ layer-rule {
         xray false
     }
 }
+*/
 
+/* fuzzel: era o power-menu do waybar; substituido pelo painel Session do noctalia
 layer-rule {
     match namespace="^fuzzel$"
 
@@ -177,16 +191,17 @@ layer-rule {
         xray false
     }
 }
+*/
 
-/*
+// A barra do noctalia pede blur via ext-background-effect no retangulo inteiro
+// dela, mesmo com background_opacity 0 — apareceria uma faixa borrada ligando
+// as ilhas. blur false = nunca borrar, sobrepoe o pedido do cliente.
 layer-rule {
-    match namespace="^waybar$"
+    match namespace="^noctalia-bar"
     background-effect {
-        blur true
-        xray false
+        blur false
     }
 }
-*/
 
 window-rule {
     match app-id="^code$"
@@ -195,18 +210,6 @@ window-rule {
         xray false
     }
 }
-
-window-rule {
-    match app-id="^dev.zed.Zed$"
-
-    draw-border-with-background false
-
-    background-effect {
-        blur true
-        xray false
-    }
-}
-
 
 window-rule {
     match app-id=r"^com\.mitchellh\.ghostty$"
@@ -221,7 +224,8 @@ window-rule {
 
 binds {
     Mod+Return       { spawn "ghostty"; }
-    Mod+D            { spawn "walker"; }
+    //Mod+D            { spawn "walker"; }   // externo: substituido pelo launcher do noctalia
+    Mod+D            { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 
     Mod+Shift+Slash  { show-hotkey-overlay; }
     Mod+Shift+E      { quit; }
@@ -236,8 +240,8 @@ binds {
     Mod+Up           { focus-window-up; }
     Mod+Down         { focus-window-down; }
 
-    Mod+L            { spawn "sh" "-c" "pidof -x swaylock || swaylock"; }
-
+    //Mod+L            { spawn "sh" "-c" "pidof -x swaylock || swaylock"; }   // externo: lockscreen do noctalia
+    Mod+L            { spawn "noctalia" "msg" "session" "lock"; }
     Mod+Shift+Left   { move-column-left; }
     Mod+Shift+Right  { move-column-right; }
     Mod+Shift+Up     { move-window-up; }
@@ -277,26 +281,42 @@ binds {
 
     Mod+Shift+Space  { switch-layout "next"; }
 
-    Print            { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
-    Shift+Print      { spawn "sh" "-c" "grim - | wl-copy"; }
-    Mod+Print        { spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
-    Mod+Shift+Print  { spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+    // externos (grim/slurp/wl-copy): substituidos pelo screenshot do noctalia
+    //Print            { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+    //Shift+Print      { spawn "sh" "-c" "grim - | wl-copy"; }
+    //Mod+Print        { spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+    //Mod+Shift+Print  { spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+    Print            { spawn "noctalia" "msg" "screenshot-region"; }
+    Shift+Print      { spawn "noctalia" "msg" "screenshot-fullscreen"; }
 
     Mod+Tab          { toggle-overview; }
 
-    XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioPause        allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioStop         allow-when-locked=true { spawn "playerctl" "stop"; }
-    XF86AudioNext         allow-when-locked=true { spawn "music-osd" "next"; }
-    XF86AudioPrev         allow-when-locked=true { spawn "music-osd" "previous"; }
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise" "--max-volume" "150"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
-    XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightness-osd" "up"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightness-osd" "down"; }
-    Mod+F6 { spawn "brightness-osd" "up"; }
-    Mod+F5 { spawn "brightness-osd" "down"; }
+    // externos (playerctl, music-osd, swayosd-client, brightness-osd):
+    // o noctalia ja traz media, volume, mic e brilho com OSD proprio ([osd] no config.toml)
+    //XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    //XF86AudioNext         allow-when-locked=true { spawn "music-osd" "next"; }
+    //XF86AudioPrev         allow-when-locked=true { spawn "music-osd" "previous"; }
+    //XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise" "--max-volume" "150"; }
+    //XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    //XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    //XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    //XF86MonBrightnessUp   allow-when-locked=true { spawn "brightness-osd" "up"; }
+    //XF86MonBrightnessDown allow-when-locked=true { spawn "brightness-osd" "down"; }
+    //Mod+F6 { spawn "brightness-osd" "up"; }
+    //Mod+F5 { spawn "brightness-osd" "down"; }
+    XF86AudioPlay         allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioPause        allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioStop         allow-when-locked=true { spawn "noctalia" "msg" "media" "stop"; }
+    XF86AudioNext         allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+    XF86AudioPrev         allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+    XF86AudioMute         allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
+    Mod+F6 { spawn "noctalia" "msg" "brightness-up"; }
+    Mod+F5 { spawn "noctalia" "msg" "brightness-down"; }
 }
 
 gestures {
@@ -315,3 +335,5 @@ output "HDMI-A-1" {
     mode "3840x2160@120.000"
 }
 */
+
+include "noctalia.kdl"

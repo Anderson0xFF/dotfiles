@@ -170,12 +170,12 @@
     },
     "memory": {
       "format": "<span font='Symbols Nerd Font Mono'>󰍛</span>",
-      "interval": 5,
+      "interval": 3,
       "tooltip-format": "RAM: {used:0.1f} GiB / {total:0.1f} GiB ({percentage}%)"
     },
     "memory#swap": {
       "format": "<span font='Symbols Nerd Font Mono'>󰯍</span>",
-      "interval": 5,
+      "interval": 3,
       "tooltip-format": "Swap: {swapUsed:0.1f} GiB / {swapTotal:0.1f} GiB ({swapPercentage}%)"
     },
     "custom/gpu": {
@@ -205,7 +205,7 @@
     "temperature": {
       "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
       "critical-threshold": 75,
-      "interval": 5,
+      "interval": 3,
       "format": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
       "format-critical": "<span font='Symbols Nerd Font Mono'>{icon}</span>",
       "format-icons": [
@@ -219,7 +219,7 @@
     "disk": {
       "format": "<span font='Symbols Nerd Font Mono'>󰋊</span>",
       "path": "/",
-      "interval": 5,
+      "interval": 3,
       "tooltip-format": "{path}: {used} / {total} ({percentage_used}%)"
     },
     "network": {

@@ -4,6 +4,7 @@
 [gentoo]
 [guru]
 [pf4public]
+[steam-overlay]
 
 # Detalhe (location, sync-uri):
 
@@ -24,6 +25,11 @@ sync-type = git
 sync-uri = https://github.com/PF4Public/gentoo-overlay.git
 priority = 10
 auto-sync= true
+
+[steam-overlay]
+location = /var/db/repos/steam-overlay
+sync-type = git
+sync-uri = https://github.com/anyc/steam-overlay.git
 
 ## gentoo.conf
 [DEFAULT]

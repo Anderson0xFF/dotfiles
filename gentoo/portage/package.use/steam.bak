@@ -1,0 +1,13 @@
+games-util/steam-launcher abi_x86_32
+dev-util/spirv-tools abi_x86_32
+media-libs/mesa abi_x86_32
+x11-libs/libdrm abi_x86_32
+dev-libs/expat abi_x86_32
+dev-libs/glib abi_x86_32
+sys-apps/util-linux abi_x86_32
+media-libs/flac abi_x86_32
+media-libs/freetype abi_x86_32
+x11-libs/pixman abi_x86_32
+sys-libs/zlib abi_x86_32
+dev-libs/elfutils abi_x86_32
+

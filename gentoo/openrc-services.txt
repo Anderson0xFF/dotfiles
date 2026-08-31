@@ -1,6 +1,8 @@
        NetworkManager |      default                           
                agetty |                                        
               anydesk |                                        
+         avahi-daemon |      default                           
+       avahi-dnsconfd |                                        
                binfmt | boot                                   
             bluetooth |      default                           
              bootlogd |                                        
@@ -10,7 +12,7 @@
           consolefont |                                        
            containerd |                                        
                cronie |      default                           
-                cupsd |                                        
+                cupsd |      default                           
                  dbus |      default                           
                 devfs |                                 sysinit
         device-mapper |                                        

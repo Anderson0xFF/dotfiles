@@ -1,0 +1,326 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,br"
+            options "grp:alt_shift_toggle"
+        }
+    }
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 8
+}
+
+blur {
+    passes 4
+    offset 4.0
+    noise 0.015
+    saturation 1.3
+}
+
+prefer-no-csd
+
+environment {
+    GTK_USE_PORTAL "1"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+}
+
+
+spawn-at-startup "gentoo-pipewire-launcher"
+spawn-at-startup "udiskie" "--tray"
+
+/*spawn-at-startup "waybar"
+spawn-at-startup "sh" "-c" "waypaper --restore"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "mako"
+spawn-at-startup "swayidle" "-w"
+spawn-at-startup "sh" "-c" "dbus-update-activation-environment --all"
+
+spawn-at-startup "sh" "-c" "gsettings set org.gnome.desktop.interface color-scheme prefer-dark; gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark"
+*/
+
+spawn-at-startup "noctalia"
+
+
+layout {
+    gaps 8
+    struts {
+        left 18
+        right 18
+        bottom 8
+    }
+
+    center-focused-column "never"
+    always-center-single-column false
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    border {
+        off
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#00000077"
+    }
+
+    focus-ring {
+        width 2
+        active-gradient from="red" to="orange" angle=45 in="oklch longer hue" relative-to="workspace-view"
+        inactive-color "#333333"
+    }
+}
+
+window-rule {
+    geometry-corner-radius 4
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id="^xdg-desktop-portal"
+    open-floating true
+    max-width 1200
+    max-height 800
+}
+
+window-rule {
+    match app-id="^thunar$" title="Open With"
+    match app-id="^thunar$" title="Properties"
+    match app-id="^thunar$" title="Rename"
+    match app-id="^thunar$" title="Create"
+    match app-id="^thunar$" title="Confirm"
+    match app-id="^thunar$" title="Delete"
+    match app-id="^thunar$" title="Execute"
+    open-floating true
+    max-width 800
+    max-height 600
+}
+
+window-rule {
+    match app-id="^firefox-bin$" title="^Picture-in-Picture$"
+    open-floating true
+    max-width 700
+    max-height 400
+}
+
+window-rule {
+    match app-id="^firefox$" title="^Enter name of file to save to"
+    match app-id="^firefox$" title="^Salvar como$"
+    match app-id="^firefox$" title="^File Upload$"
+    match app-id="^firefox$" title="^Enviar arquivo$"
+    match app-id="^firefox$" title="^Authentication Required$"
+    match app-id="^firefox$" title="^Autenticação necessária$"
+    open-floating true
+    max-width 960
+    max-height 720
+}
+
+window-rule {
+    match app-id="^polkit-gnome-authentication-agent-1$"
+    match app-id="polkit"
+    open-floating true
+    max-width 600
+    max-height 400
+}
+
+window-rule {
+    match app-id=r"^com\.mitchellh\.ghostty$" title="^nmtui$"
+    open-floating true
+    default-column-width {}
+    default-window-height {}
+    max-width 1020
+    max-height 720
+}
+
+window-rule {
+    match app-id=r"^com\.mitchellh\.ghostty$" title="^wiremix$"
+    open-floating true
+    default-column-width {}
+    default-window-height {}
+    max-width 1020
+    max-height 720
+}
+
+window-rule {
+    match app-id="^waypaper$"
+    open-floating true
+    max-width 900
+    max-height 600
+}
+
+layer-rule {
+    match namespace="^walker$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="^fuzzel$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+/*
+layer-rule {
+    match namespace="^waybar$"
+    //draw-border-with-background false
+    background-effect {
+        blur true
+        xray false
+        noise 0.1
+        saturation 3
+    }
+}
+*/
+
+window-rule {
+    match app-id="^code$"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+/*window-rule {
+    match app-id="^dev.zed.Zed$"
+
+    draw-border-with-background false
+
+    background-effect {
+        blur true
+        xray false
+    }
+}*/
+
+
+window-rule {
+    match app-id=r"^com\.mitchellh\.ghostty$"
+
+    draw-border-with-background false
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+binds {
+    Mod+Return       { spawn "ghostty"; }
+    Mod+D            { spawn "walker"; }
+
+    Mod+Shift+Slash  { show-hotkey-overlay; }
+    Mod+Shift+E      { quit; }
+    Mod+Shift+P      { power-off-monitors; }
+
+    Mod+Q            { close-window; }
+    Mod+F            { maximize-column; }
+    Mod+Shift+F      { fullscreen-window; }
+
+    Mod+Left         { focus-column-left; }
+    Mod+Right        { focus-column-right; }
+    Mod+Up           { focus-window-up; }
+    Mod+Down         { focus-window-down; }
+
+    Mod+L            { spawn "sh" "-c" "pidof -x swaylock || swaylock"; }
+    //Mod              { toggle-overview; }
+    Mod+Shift+Left   { move-column-left; }
+    Mod+Shift+Right  { move-column-right; }
+    Mod+Shift+Up     { move-window-up; }
+    Mod+Shift+Down   { move-window-down; }
+
+    Mod+Page_Down       { focus-workspace-down; }
+    Mod+Page_Up         { focus-workspace-up; }
+    Mod+U               { focus-workspace-down; }
+    Mod+I               { focus-workspace-up; }
+    Mod+Shift+Page_Down { move-column-to-workspace-down; }
+    Mod+Shift+Page_Up   { move-column-to-workspace-up; }
+    Mod+Shift+U         { move-column-to-workspace-down; }
+    Mod+Shift+I         { move-column-to-workspace-up; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+R            { switch-preset-column-width; }
+    Mod+Shift+R      { reset-window-height; }
+    Mod+Minus        { set-column-width "-10%"; }
+    Mod+Equal        { set-column-width "+10%"; }
+    Mod+Shift+Minus  { set-window-height "-10%"; }
+    Mod+Shift+Equal  { set-window-height "+10%"; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+V            { toggle-window-floating; }
+    Mod+Shift+V      { switch-focus-between-floating-and-tiling; }
+
+    Mod+Shift+Space  { switch-layout "next"; }
+
+    Print            { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+    Shift+Print      { spawn "sh" "-c" "grim - | wl-copy"; }
+    Mod+Print        { spawn "sh" "-c" "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+    Mod+Shift+Print  { spawn "sh" "-c" "grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+
+    Mod+Tab          { toggle-overview; }
+
+    XF86AudioPlay         allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPause        allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioStop         allow-when-locked=true { spawn "playerctl" "stop"; }
+    XF86AudioNext         allow-when-locked=true { spawn "music-osd" "next"; }
+    XF86AudioPrev         allow-when-locked=true { spawn "music-osd" "previous"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise" "--max-volume" "150"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightness-osd" "up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightness-osd" "down"; }
+    Mod+F6 { spawn "brightness-osd" "up"; }
+    Mod+F5 { spawn "brightness-osd" "down"; }
+}
+
+gestures {
+    hot-corners {}
+}
+
+
+output "DP-1" {
+    scale 1.0
+    mode "3840x2160@240.084"
+}
+
+/*
+output "HDMI-A-1" {
+    scale 1.0
+    mode "3840x2160@120.000"
+}
+*/
+
+include "noctalia.kdl"

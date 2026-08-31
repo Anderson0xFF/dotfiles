@@ -91,15 +91,19 @@ Máquina desliga (LEDs/fans off). Religar restaura a sessão.
 - **Módulo `resume` do dracut**: contém `parse-resume.sh` (parseia `resume=UUID=…` do cmdline) e `resume.sh` (escreve `major:minor` em `/sys/power/resume` antes do switch_root). Sem ele, o kernel não sabe de onde retomar.
 - **Swap em partição** (não swapfile): caminho mais simples no btrfs. Swapfile em btrfs precisaria de `resume_offset=` calculado por `btrfs inspect-internal map-swapfile -r <swapfile>` e o swapfile precisaria estar em subvolume sem CoW.
 
-## Integração com swayidle
+## Integração com idle (noctalia)
 
-Em [/home/alynx/.config/swayidle/config](/home/alynx/.config/swayidle/config):
+O swayidle foi substituído pelo idle do noctalia. Em [/home/alynx/.config/noctalia/config.toml](/home/alynx/.config/noctalia/config.toml):
 
+```toml
+[idle.behavior.hibernate]
+timeout = 1800           # 30 min -> hiberna
+action  = "command"
+command = "loginctl hibernate"
+enabled = true
 ```
-timeout 1800 'pidof -x swaylock || loginctl hibernate'
-```
 
-O `pidof -x swaylock ||` impede instâncias duplicadas do swaylock. O lock é disparado antes da hibernação, então ao retomar a tela já está bloqueada — daí a impressão (quando hibernação está quebrada) de que o swayidle "só travou a tela".
+O lock antes de dormir não precisa de config: o noctalia escuta o `PrepareForSleep` do logind e tranca sozinho antes da hibernação (inclusive quando disparada pelo `loginctl`), então ao retomar a tela já está bloqueada — daí a impressão (quando hibernação está quebrada) de que "só travou a tela". O guard antigo do `pidof -x swaylock` também caiu: o lockscreen é interno, sem instâncias duplicadas.
 
 ## Ao atualizar o kernel
 
